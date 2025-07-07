@@ -1,0 +1,173 @@
+{
+    "id": "7a40e8d3-ed44-4357-ac0c-067dd54117a2",
+    "sceneType": "PREFAB",
+    "settings": {
+        "exportClass": true,
+        "autoImport": true,
+        "preloadMethodName": "",
+        "preloadPackFiles": [],
+        "createMethodName": "",
+        "compilerOutputLanguage": "TYPE_SCRIPT",
+        "borderWidth": 360,
+        "borderHeight": 202
+    },
+    "displayList": [
+        {
+            "type": "Container",
+            "id": "aa16d18d-8f80-43e4-8a52-10826481f45d",
+            "label": "PlayerContainer",
+            "list": [
+                {
+                    "type": "Rectangle",
+                    "id": "8cda4c3a-b279-430d-a026-67dfa4205a9b",
+                    "label": "rectangle_1",
+                    "y": 3,
+                    "originX": 0,
+                    "isFilled": true,
+                    "width": 25,
+                    "height": 2.5
+                },
+                {
+                    "type": "Rectangle",
+                    "id": "74ac7f7a-5461-4a6c-883d-746b8a4465c0",
+                    "label": "arcadesprite_1",
+                    "y": 7,
+                    "isFilled": true,
+                    "fillColor": "#9e9e9e",
+                    "width": 15,
+                    "height": 30
+                }
+            ]
+        }
+    ],
+    "plainObjects": [
+        {
+            "id": "4c962f8a-e143-4aba-82ae-7f365663cd2b",
+            "type": "Keyboard.Key",
+            "label": "move_left_a",
+            "keyCode": "A"
+        },
+        {
+            "id": "ca3005aa-92a6-4b0e-9e8c-1dab30a0470f",
+            "type": "Keyboard.Key",
+            "label": "move_right_d",
+            "keyCode": "D"
+        },
+        {
+            "id": "2f753f24-f7fe-47e8-aff5-1f02cff1f6ec",
+            "type": "Keyboard.Key",
+            "label": "move_up_w",
+            "keyCode": "W"
+        },
+        {
+            "id": "286753a1-5268-4bad-be52-f6fd65931e74",
+            "type": "Keyboard.Key",
+            "label": "move_up_space"
+        },
+        {
+            "id": "7fdb5784-6c1b-49f2-b3b6-7a9cde217c07",
+            "type": "Keyboard.Key",
+            "label": "move_sprint_shift",
+            "keyCode": "SHIFT"
+        }
+    ],
+    "meta": {
+        "app": "Phaser Editor - Scene Editor",
+        "url": "https://phaser.io/editor",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
+    },
+    "prefabProperties": [
+        {
+            "name": "walkSpeed",
+            "label": "Walking speed",
+            "tooltip": "Walking speed",
+            "defValue": 80,
+            "customDefinition": false,
+            "type": {
+                "id": "number"
+            }
+        },
+        {
+            "name": "runSpeed",
+            "label": "Running speed",
+            "tooltip": "Running speed",
+            "defValue": 130,
+            "customDefinition": false,
+            "type": {
+                "id": "number"
+            }
+        },
+        {
+            "name": "jumpHeight",
+            "label": "Jump height",
+            "tooltip": "Jump height",
+            "defValue": 150,
+            "customDefinition": false,
+            "type": {
+                "id": "number"
+            }
+        },
+        {
+            "name": "HUD",
+            "label": "HUD Link",
+            "tooltip": "Link the HUD to the player",
+            "defValue": "",
+            "customDefinition": false,
+            "type": {
+                "id": "object-var",
+                "expressionType": "Phaser.GameObjects.GameObject"
+            }
+        },
+        {
+            "name": "maxStamina",
+            "label": "Max stamina",
+            "tooltip": "Max stamina",
+            "defValue": 250,
+            "customDefinition": false,
+            "type": {
+                "id": "number"
+            }
+        },
+        {
+            "name": "sprintStaminaLoss",
+            "label": "Sprint Stamina Loss Multiplier",
+            "tooltip": "The speed of stamina draining per tick",
+            "defValue": 0.25,
+            "customDefinition": false,
+            "type": {
+                "id": "number"
+            }
+        },
+        {
+            "name": "staminaRegen",
+            "label": "Stamina Regen Multiplier",
+            "tooltip": "Stamina regen per tick",
+            "defValue": 0.05,
+            "customDefinition": false,
+            "type": {
+                "id": "number"
+            }
+        },
+        {
+            "name": "jumpStaminaLoss",
+            "label": "Jump Stamina Loss",
+            "tooltip": "Amount of stamina wasted per jump",
+            "defValue": 10,
+            "customDefinition": false,
+            "type": {
+                "id": "number"
+            }
+        },
+        {
+            "name": "idleStaminaRegen",
+            "label": "Idle Stamina Regen",
+            "tooltip": "Rate per tick for stamina regen for when the player is idle",
+            "defValue": 0.09,
+            "customDefinition": false,
+            "type": {
+                "id": "number"
+            }
+        }
+    ]
+}

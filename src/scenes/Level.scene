@@ -8,8 +8,8 @@
         "createMethodName": "editorCreate",
         "sceneKey": "Level",
         "compilerOutputLanguage": "TYPE_SCRIPT",
-        "borderWidth": 1280,
-        "borderHeight": 720
+        "borderWidth": 640,
+        "borderHeight": 360
     },
     "displayList": [
         {
@@ -19,24 +19,82 @@
             "texture": {
                 "key": "FufuSuperDino"
             },
-            "x": 640,
-            "y": 257
+            "x": 428,
+            "y": 146,
+            "scaleX": 0.5,
+            "scaleY": 0.5
         },
         {
             "type": "Text",
             "id": "5c228da6-971a-4347-84e8-9f62464ba76d",
             "label": "text",
-            "x": 640,
-            "y": 458,
+            "x": 421,
+            "y": 46,
             "originX": 0.5,
             "originY": 0.5,
             "text": "Phaser 3 + Phaser Editor v4\nVite + TypeScript",
             "align": "center",
             "fontFamily": "Arial",
             "fontSize": "3em"
+        },
+        {
+            "type": "EditableTilemapLayer",
+            "id": "03598ce6-21c5-419f-a7fc-7d4d48359f2c",
+            "label": "layer",
+            "tilemapId": "2e517558-f44f-4ab6-bf90-2cec48f4276d"
+        },
+        {
+            "type": "Layer",
+            "id": "10539954-04af-456b-91c9-c7744ad363fe",
+            "label": "ui",
+            "list": [
+                {
+                    "prefabId": "50dc0e67-7b35-4a98-a12d-8622416b0bba",
+                    "id": "5849d0a7-3aba-44e9-96c1-2568bb88ec4e",
+                    "unlock": [
+                        "x",
+                        "y"
+                    ],
+                    "label": "playerHUD",
+                    "x": 82,
+                    "y": 124
+                }
+            ]
         }
     ],
-    "plainObjects": [],
+    "plainObjects": [
+        {
+            "id": "2e517558-f44f-4ab6-bf90-2cec48f4276d",
+            "type": "EditableTilemap",
+            "label": "editabletilemap",
+            "width": 10,
+            "height": 10,
+            "tileWidth": 32,
+            "tileHeight": 32,
+            "tilesets": [
+                {
+                    "name": "CollisionsTilemap",
+                    "imageKey": "CollisionsTilemap",
+                    "tileWidth": 32,
+                    "tileHeight": 32,
+                    "tileMargin": 0,
+                    "tileSpacing": 0
+                }
+            ],
+            "paintLayerId": "03598ce6-21c5-419f-a7fc-7d4d48359f2c",
+            "paintTileset": "CollisionsTilemap",
+            "layers": [
+                {
+                    "name": "layer",
+                    "data": "[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,3,3,3,3,0,0,0,0,0,0,0,3,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+                    "width": 20,
+                    "height": 11,
+                    "tileWidth": 32,
+                    "tileHeight": 32
+                }
+            ]
+        }
+    ],
     "meta": {
         "app": "Phaser Editor - Scene Editor",
         "url": "https://phaser.io/editor",

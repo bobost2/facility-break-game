@@ -2,9 +2,234 @@
     "section1": {
         "files": [
             {
+                "url": "assets/ui/game-bars/BarEmpty.png",
+                "type": "image",
+                "key": "BarEmpty"
+            },
+            {
+                "url": "assets/ui/game-bars/BarHealth.png",
+                "type": "image",
+                "key": "BarHealth"
+            },
+            {
+                "url": "assets/ui/game-bars/BarStamina.png",
+                "type": "image",
+                "key": "BarStamina"
+            },
+            {
+                "url": "assets/packs/industrial/anims/Card.png",
+                "frameConfig": {
+                    "frameWidth": 24,
+                    "frameHeight": 24,
+                    "startFrame": 0,
+                    "endFrame": 7,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "Card"
+            },
+            {
+                "url": "assets/packs/industrial/anims/Chest.png",
+                "frameConfig": {
+                    "frameWidth": 32,
+                    "frameHeight": 32,
+                    "startFrame": 0,
+                    "endFrame": 7,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "Chest"
+            },
+            {
+                "url": "assets/developer/CollisionsTilemap.png",
+                "frameConfig": {
+                    "frameWidth": 32,
+                    "frameHeight": 32,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "CollisionsTilemap"
+            },
+            {
+                "url": "assets/packs/industrial/anims/Entry.png",
+                "frameConfig": {
+                    "frameWidth": 32,
+                    "frameHeight": 64,
+                    "startFrame": 0,
+                    "endFrame": 7,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "Entry"
+            },
+            {
                 "url": "assets/FufuSuperDino.png",
                 "type": "image",
                 "key": "FufuSuperDino"
+            },
+            {
+                "url": "assets/packs/industrial/anims/Hammer.png",
+                "frameConfig": {
+                    "frameWidth": 32,
+                    "frameHeight": 64,
+                    "startFrame": 0,
+                    "endFrame": 7,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "Hammer"
+            },
+            {
+                "url": "assets/ui/game-bars/Heart.png",
+                "type": "image",
+                "key": "Heart"
+            },
+            {
+                "url": "assets/packs/industrial/tiles/IndustrialObjects.png",
+                "frameConfig": {
+                    "frameWidth": 32,
+                    "frameHeight": 36,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 4,
+                    "margin": 2
+                },
+                "type": "spritesheet",
+                "key": "IndustrialObjects"
+            },
+            {
+                "url": "assets/packs/industrial/tiles/IndustrialTiles.png",
+                "frameConfig": {
+                    "frameWidth": 32,
+                    "frameHeight": 32,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "IndustrialTiles"
+            },
+            {
+                "url": "assets/packs/industrial/anims/Money.png",
+                "frameConfig": {
+                    "frameWidth": 24,
+                    "frameHeight": 24,
+                    "startFrame": 0,
+                    "endFrame": 5,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "Money"
+            },
+            {
+                "url": "assets/packs/industrial/anims/object-anims.json",
+                "type": "animation",
+                "key": "object-anims"
+            },
+            {
+                "url": "assets/packs/industrial/anims/Platform.png",
+                "frameConfig": {
+                    "frameWidth": 32,
+                    "frameHeight": 32,
+                    "startFrame": 0,
+                    "endFrame": 7,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "Platform"
+            },
+            {
+                "url": "assets/packs/industrial/anims/Screen1.png",
+                "frameConfig": {
+                    "frameWidth": 32,
+                    "frameHeight": 32,
+                    "startFrame": 0,
+                    "endFrame": 3,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "Screen1"
+            },
+            {
+                "url": "assets/packs/industrial/anims/Screen2.png",
+                "frameConfig": {
+                    "frameWidth": 32,
+                    "frameHeight": 42,
+                    "startFrame": 0,
+                    "endFrame": 3,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "Screen2"
+            },
+            {
+                "url": "assets/ui/game-bars/StaminaBolt.png",
+                "type": "image",
+                "key": "StaminaBolt"
+            },
+            {
+                "url": "assets/packs/industrial/anims/Transporter.png",
+                "frameConfig": {
+                    "frameWidth": 96,
+                    "frameHeight": 32,
+                    "startFrame": 0,
+                    "endFrame": 3,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "Transporter"
+            },
+            {
+                "url": "assets/packs/industrial/anims/Transporter1.png",
+                "frameConfig": {
+                    "frameWidth": 32,
+                    "frameHeight": 32,
+                    "startFrame": 0,
+                    "endFrame": 3,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "Transporter1"
+            },
+            {
+                "url": "assets/packs/industrial/anims/Transporter2.png",
+                "frameConfig": {
+                    "frameWidth": 32,
+                    "frameHeight": 32,
+                    "startFrame": 0,
+                    "endFrame": 3,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "Transporter2"
+            },
+            {
+                "url": "assets/packs/industrial/anims/Transporter3.png",
+                "frameConfig": {
+                    "frameWidth": 32,
+                    "frameHeight": 32,
+                    "startFrame": 0,
+                    "endFrame": 3,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "Transporter3"
             }
         ]
     },
@@ -12,6 +237,8 @@
         "app": "Phaser Editor 2D - Asset Pack Editor",
         "contentType": "phasereditor2d.pack.core.AssetContentType",
         "url": "https://phasereditor2d.com",
-        "version": 2
+        "version": 2,
+        "showAllFilesInBlocks": false,
+        "visible": true
     }
 }

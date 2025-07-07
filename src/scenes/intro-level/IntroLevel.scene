@@ -1,0 +1,159 @@
+{
+    "id": "d84770a2-2840-46a2-bce7-8e2c7133d182",
+    "sceneType": "SCENE",
+    "settings": {
+        "exportClass": true,
+        "autoImport": true,
+        "preloadPackFiles": [],
+        "createMethodName": "editorCreate",
+        "sceneKey": "IntroLevel",
+        "compilerOutputLanguage": "TYPE_SCRIPT",
+        "borderWidth": 360,
+        "borderHeight": 202
+    },
+    "displayList": [
+        {
+            "type": "EditableTilemapLayer",
+            "id": "01adeb6b-252b-44d8-b9c1-e2a181916f88",
+            "label": "bg-layer",
+            "tilemapId": "cc48068b-13f6-48c5-a9aa-d2adc5da5693"
+        },
+        {
+            "type": "EditableTilemapLayer",
+            "id": "4c4bd35f-0002-4862-844f-a9a344115c34",
+            "label": "layer",
+            "tilemapId": "cc48068b-13f6-48c5-a9aa-d2adc5da5693"
+        },
+        {
+            "type": "EditableTilemapLayer",
+            "id": "4a5cfae1-485a-4e80-b63f-4ce17b43c848",
+            "label": "collision-layer",
+            "scope": "CLASS",
+            "visible": false,
+            "tilemapId": "cc48068b-13f6-48c5-a9aa-d2adc5da5693"
+        },
+        {
+            "prefabId": "7a40e8d3-ed44-4357-ac0c-067dd54117a2",
+            "id": "3d347e94-4958-4d71-9618-8f5191863b83",
+            "unlock": [
+                "x",
+                "y",
+                "HUD"
+            ],
+            "label": "characterPlayer",
+            "HUD": "playerHUD",
+            "x": 177,
+            "y": 136
+        },
+        {
+            "type": "Layer",
+            "id": "221db55d-f131-4662-96a2-559e8b2878c9",
+            "label": "UI",
+            "list": [
+                {
+                    "prefabId": "50dc0e67-7b35-4a98-a12d-8622416b0bba",
+                    "id": "dc380e13-c997-424e-af0a-b1f53b10064a",
+                    "unlock": [
+                        "x",
+                        "y",
+                        "scaleX",
+                        "scaleY"
+                    ],
+                    "label": "playerHUD",
+                    "x": 77,
+                    "y": 118,
+                    "scaleX": 1,
+                    "scaleY": 1
+                }
+            ]
+        }
+    ],
+    "plainObjects": [
+        {
+            "id": "cc48068b-13f6-48c5-a9aa-d2adc5da5693",
+            "type": "EditableTilemap",
+            "label": "editabletilemap",
+            "width": 10,
+            "height": 10,
+            "tileWidth": 32,
+            "tileHeight": 32,
+            "tilesets": [
+                {
+                    "name": "IndustrialTiles",
+                    "imageKey": "IndustrialTiles",
+                    "tileWidth": 32,
+                    "tileHeight": 32,
+                    "tileMargin": 0,
+                    "tileSpacing": 0
+                },
+                {
+                    "name": "IndustrialObjects",
+                    "imageKey": "IndustrialObjects",
+                    "tileWidth": 32,
+                    "tileHeight": 36,
+                    "tileMargin": 2,
+                    "tileSpacing": 4
+                },
+                {
+                    "name": "CollisionsTilemap",
+                    "imageKey": "CollisionsTilemap",
+                    "tileWidth": 32,
+                    "tileHeight": 32,
+                    "tileMargin": 0,
+                    "tileSpacing": 0
+                }
+            ],
+            "paintLayerId": "01adeb6b-252b-44d8-b9c1-e2a181916f88",
+            "paintTileset": "IndustrialTiles",
+            "layers": [
+                {
+                    "name": "layer",
+                    "data": "[64,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,64,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,64,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,64,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,64,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,64,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,64,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41]",
+                    "width": 40,
+                    "height": 7,
+                    "tileWidth": 32,
+                    "tileHeight": 32
+                },
+                {
+                    "name": "bg-layer",
+                    "data": "[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+                    "width": 40,
+                    "height": 7,
+                    "tileWidth": 32,
+                    "tileHeight": 32
+                },
+                {
+                    "name": "collision-layer",
+                    "data": "[127,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,127,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,127,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,127,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,127,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,127,127,127,127,127,127,127,127,127,127,127,127,127,127,127,127,127,127,127,127,127,127,127,127,127,127,127,127,127,127,127,127,127,127,127,127,127,127,127,127,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+                    "width": 40,
+                    "height": 7,
+                    "tileWidth": 32,
+                    "tileHeight": 32
+                }
+            ]
+        },
+        {
+            "id": "8b72a50c-2331-444c-84b1-64673eca6698",
+            "type": "Collider",
+            "label": "collider",
+            "scope": "LOCAL",
+            "object1": "characterPlayer",
+            "object2": "collisionList"
+        }
+    ],
+    "meta": {
+        "app": "Phaser Editor - Scene Editor",
+        "url": "https://phaser.io/editor",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
+    },
+    "lists": [
+        {
+            "id": "5c3a5d5d-c84d-4588-84ed-81a4015cf767",
+            "label": "collisionList",
+            "objectIds": [
+                "4a5cfae1-485a-4e80-b63f-4ce17b43c848"
+            ]
+        }
+    ]
+}

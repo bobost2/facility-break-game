@@ -1,0 +1,114 @@
+{
+    "id": "50dc0e67-7b35-4a98-a12d-8622416b0bba",
+    "sceneType": "PREFAB",
+    "settings": {
+        "exportClass": true,
+        "autoImport": true,
+        "preloadMethodName": "",
+        "preloadPackFiles": [],
+        "createMethodName": "",
+        "compilerOutputLanguage": "TYPE_SCRIPT",
+        "borderWidth": 360,
+        "borderHeight": 202
+    },
+    "displayList": [
+        {
+            "type": "Container",
+            "id": "09f69b04-1580-43e4-9ba4-2927cbe276c2",
+            "label": "container_1",
+            "x": 87.01182838132256,
+            "y": 127.90512190015957,
+            "list": [
+                {
+                    "type": "Container",
+                    "id": "c780c1e9-2ea7-42b6-8bad-fb5a4a31891d",
+                    "label": "StaminaBarUI",
+                    "x": 113,
+                    "y": -117,
+                    "list": [
+                        {
+                            "type": "Image",
+                            "id": "fb59ad9b-283b-4785-ae63-88eb6750b4f2",
+                            "label": "barStaminaEmpty",
+                            "texture": {
+                                "key": "BarEmpty"
+                            },
+                            "x": 85,
+                            "y": 13
+                        },
+                        {
+                            "type": "TileSprite",
+                            "id": "6f9e08af-4432-4fa5-a3d0-88354fb9d93e",
+                            "label": "barStamina",
+                            "scope": "CLASS",
+                            "texture": {
+                                "key": "BarStamina"
+                            },
+                            "x": 21,
+                            "y": 13,
+                            "originX": 0,
+                            "width": 128,
+                            "height": 16
+                        },
+                        {
+                            "type": "Image",
+                            "id": "a5c7bd52-9aae-451e-b599-94061e5bb8f3",
+                            "label": "staminaBolt",
+                            "texture": {
+                                "key": "StaminaBolt"
+                            },
+                            "x": 155,
+                            "y": 13
+                        }
+                    ]
+                },
+                {
+                    "type": "Container",
+                    "id": "2af139bb-2f69-4f33-99f6-0bff27918e43",
+                    "label": "HealthBarUI",
+                    "x": -59,
+                    "y": -104,
+                    "list": [
+                        {
+                            "type": "Image",
+                            "id": "0ed4f05e-fbde-4c7e-9afb-01e8f6d33366",
+                            "label": "barHealthEmpty",
+                            "texture": {
+                                "key": "BarEmpty"
+                            },
+                            "x": 72
+                        },
+                        {
+                            "type": "TileSprite",
+                            "id": "1e1d3e09-d8bc-4545-a55d-e39306529b67",
+                            "label": "barHealth",
+                            "scope": "CLASS",
+                            "texture": {
+                                "key": "BarHealth"
+                            },
+                            "x": 8,
+                            "originX": 0,
+                            "width": 128,
+                            "height": 16
+                        },
+                        {
+                            "type": "Image",
+                            "id": "efc1a718-18bd-4c6d-9688-6de8f059ab75",
+                            "label": "heart",
+                            "texture": {
+                                "key": "Heart"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "plainObjects": [],
+    "meta": {
+        "app": "Phaser Editor - Scene Editor",
+        "url": "https://phaser.io/editor",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
+    }
+}
