@@ -149,6 +149,19 @@
                 "key": "Platform"
             },
             {
+                "url": "assets/character/prototype/ProtHands.png",
+                "frameConfig": {
+                    "frameWidth": 40,
+                    "frameHeight": 60,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "ProtHands"
+            },
+            {
                 "url": "assets/packs/industrial/anims/Screen1.png",
                 "frameConfig": {
                     "frameWidth": 32,

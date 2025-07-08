@@ -2,6 +2,9 @@
     "id": "7a40e8d3-ed44-4357-ac0c-067dd54117a2",
     "sceneType": "PREFAB",
     "settings": {
+        "snapEnabled": true,
+        "snapWidth": 40,
+        "snapHeight": 60,
         "exportClass": true,
         "autoImport": true,
         "preloadMethodName": "",
@@ -18,14 +21,17 @@
             "label": "PlayerContainer",
             "list": [
                 {
-                    "type": "Rectangle",
+                    "type": "Sprite",
                     "id": "8cda4c3a-b279-430d-a026-67dfa4205a9b",
                     "label": "rectangle_1",
-                    "y": 3,
-                    "originX": 0,
-                    "isFilled": true,
-                    "width": 25,
-                    "height": 2.5
+                    "scope": "CLASS",
+                    "texture": {
+                        "key": "ProtHands",
+                        "frame": 0
+                    },
+                    "scaleX": 0.6,
+                    "scaleY": 0.4,
+                    "originX": 0
                 },
                 {
                     "type": "Rectangle",
@@ -34,7 +40,7 @@
                     "y": 7,
                     "isFilled": true,
                     "fillColor": "#9e9e9e",
-                    "width": 15,
+                    "width": 12,
                     "height": 30
                 }
             ]

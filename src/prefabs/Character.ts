@@ -14,13 +14,14 @@ export default class Character extends Phaser.GameObjects.Container {
 		super(scene, x ?? 0, y ?? 0);
 
 		// rectangle_1
-		const rectangle_1 = scene.add.rectangle(0, 3, 25, 2.5);
+		const rectangle_1 = scene.add.sprite(0, 0, "ProtHands", 0);
+		rectangle_1.scaleX = 0.6;
+		rectangle_1.scaleY = 0.4;
 		rectangle_1.setOrigin(0, 0.5);
-		rectangle_1.isFilled = true;
 		this.add(rectangle_1);
 
 		// arcadesprite_1
-		const arcadesprite_1 = scene.add.rectangle(0, 7, 15, 30);
+		const arcadesprite_1 = scene.add.rectangle(0, 7, 12, 30);
 		arcadesprite_1.isFilled = true;
 		arcadesprite_1.fillColor = 10395294;
 		this.add(arcadesprite_1);
@@ -40,6 +41,7 @@ export default class Character extends Phaser.GameObjects.Container {
 		// move_sprint_shift
 		const move_sprint_shift = this.scene.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.SHIFT);
 
+		this.rectangle_1 = rectangle_1;
 		this.move_left_a = move_left_a;
 		this.move_right_d = move_right_d;
 		this.move_up_w = move_up_w;
@@ -61,29 +63,6 @@ export default class Character extends Phaser.GameObjects.Container {
 		scene.cameras.main.fadeIn(1000, 0, 0, 0);
 
 		this.scene.events.on(Phaser.Scenes.Events.UPDATE, this.update, this);
-		this.scene.input.on('pointerdown', () => {
-			this.scene.input.mouse?.requestPointerLock();
-			if (this.scene.input.keyboard) {
-				console.log("Keyboard input captured");
-				// Prevent default browser actions for Ctrl+D and other keys
-				this.scene.input.keyboard.addCapture([
-					Phaser.Input.Keyboard.KeyCodes.W,
-					Phaser.Input.Keyboard.KeyCodes.A,
-					Phaser.Input.Keyboard.KeyCodes.S,
-					Phaser.Input.Keyboard.KeyCodes.D,
-					Phaser.Input.Keyboard.KeyCodes.CTRL,
-					Phaser.Input.Keyboard.KeyCodes.SPACE,
-					Phaser.Input.Keyboard.KeyCodes.SHIFT
-				]);
-			}
-		});
-
-		this.once(Phaser.GameObjects.Events.DESTROY, () => {
-			this.scene.events.off(Phaser.Scenes.Events.UPDATE, this.update, this);
-			this.scene.input.off('pointerdown', () => {
-				this.scene.input.mouse?.releasePointerLock();
-			});
-		});
 
 		// Defer HUD checks until after it's set via prefab props
 		Object.defineProperty(this, "HUD", {
@@ -104,6 +83,7 @@ export default class Character extends Phaser.GameObjects.Container {
 		/* END-USER-CTR-CODE */
 	}
 
+	private rectangle_1: Phaser.GameObjects.Sprite;
 	private move_left_a: Phaser.Input.Keyboard.Key;
 	private move_right_d: Phaser.Input.Keyboard.Key;
 	private move_up_w: Phaser.Input.Keyboard.Key;
@@ -124,6 +104,28 @@ export default class Character extends Phaser.GameObjects.Container {
 	private currentStamina: number = this.maxStamina;
 	private jumpActive: boolean = false;
 	// Write your code here.
+
+	preUpdate(time: number, delta: number) {
+		if (!this.active) return;
+
+		const pointer = this.scene.input.activePointer;
+		const camera = this.scene.cameras.main;
+		const worldPoint = camera.getWorldPoint(pointer.x, pointer.y);
+		const body = this.body as Phaser.Physics.Arcade.Body;
+
+		const angle = Phaser.Math.Angle.Between(
+			body.center.x, body.center.y,
+			worldPoint.x, worldPoint.y
+		);
+
+		if (angle < 0.45 && angle > -0.9) {
+			this.rectangle_1.rotation = angle;
+			this.rectangle_1.setFlip(false, false);
+		} else if ((angle < -2.3 && angle >= -Math.PI) || (angle > 2.7 && angle <= Math.PI)) {
+			this.rectangle_1.rotation = angle;
+			this.rectangle_1.setFlip(false, true);	
+		}
+	}
 
 	update() {
 		if (!this.active) return;
