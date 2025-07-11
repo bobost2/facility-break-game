@@ -11,6 +11,7 @@ class Boot extends Phaser.Scene {
 
     preload() {
         //this.load.pack("pack", "assets/preload-asset-pack.json");
+		this.load.font("Jersey10-Regular", "assets/fonts/Jersey10-Regular.ttf", "truetype");
     }
 
     create() {

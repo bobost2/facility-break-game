@@ -75,6 +75,12 @@
             "type": "Keyboard.Key",
             "label": "move_sprint_shift",
             "keyCode": "SHIFT"
+        },
+        {
+            "id": "115fc1ed-c211-415c-9a2b-839817fdf313",
+            "type": "Keyboard.Key",
+            "label": "move_dash_e",
+            "keyCode": "E"
         }
     ],
     "meta": {
@@ -170,6 +176,46 @@
             "label": "Idle Stamina Regen",
             "tooltip": "Rate per tick for stamina regen for when the player is idle",
             "defValue": 0.09,
+            "customDefinition": false,
+            "type": {
+                "id": "number"
+            }
+        },
+        {
+            "name": "dashStaminaLoss",
+            "label": "Dash Stamina Loss",
+            "tooltip": "Amount of stamina wasted per dash",
+            "defValue": 30,
+            "customDefinition": false,
+            "type": {
+                "id": "number"
+            }
+        },
+        {
+            "name": "dashSpeed",
+            "label": "Dash Speed",
+            "tooltip": "Dash speed",
+            "defValue": 300,
+            "customDefinition": false,
+            "type": {
+                "id": "number"
+            }
+        },
+        {
+            "name": "dashDuration",
+            "label": "Dash Duration",
+            "tooltip": "Travel time of dash in ms",
+            "defValue": 250,
+            "customDefinition": false,
+            "type": {
+                "id": "number"
+            }
+        },
+        {
+            "name": "staminaRegenDelay",
+            "label": "Stamina Regen Delay",
+            "tooltip": "Delay for generation start after sprint/jump/ability",
+            "defValue": 500,
             "customDefinition": false,
             "type": {
                 "id": "number"

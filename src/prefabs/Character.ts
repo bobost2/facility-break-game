@@ -41,12 +41,16 @@ export default class Character extends Phaser.GameObjects.Container {
 		// move_sprint_shift
 		const move_sprint_shift = this.scene.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.SHIFT);
 
+		// move_dash_e
+		const move_dash_e = this.scene.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.E);
+
 		this.rectangle_1 = rectangle_1;
 		this.move_left_a = move_left_a;
 		this.move_right_d = move_right_d;
 		this.move_up_w = move_up_w;
 		this.move_up_space = move_up_space;
 		this.move_sprint_shift = move_sprint_shift;
+		this.move_dash_e = move_dash_e;
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.
@@ -89,6 +93,7 @@ export default class Character extends Phaser.GameObjects.Container {
 	private move_up_w: Phaser.Input.Keyboard.Key;
 	private move_up_space: Phaser.Input.Keyboard.Key;
 	private move_sprint_shift: Phaser.Input.Keyboard.Key;
+	private move_dash_e: Phaser.Input.Keyboard.Key;
 	public walkSpeed: number = 80;
 	public runSpeed: number = 130;
 	public jumpHeight: number = 150;
@@ -98,11 +103,25 @@ export default class Character extends Phaser.GameObjects.Container {
 	public staminaRegen: number = 0.05;
 	public jumpStaminaLoss: number = 10;
 	public idleStaminaRegen: number = 0.09;
+	public dashStaminaLoss: number = 30;
+	public dashSpeed: number = 300;
+	public dashDuration: number = 250;
+	public staminaRegenDelay: number = 500;
 
 	/* START-USER-CODE */
 	private _HUD: PlayerHUD;
 	private currentStamina: number = this.maxStamina;
+	private lastStaminaUsed: number = 0;
 	private jumpActive: boolean = false;
+
+	private lastLeftTap: number = 0;
+	private lastRightTap: number = 0;
+	private dashTimer: number = 0;
+	private dashing: boolean = false;
+	private keyDelay: number = 250;
+	private dashDirection: number = 0; // -1 for left, 1 for right
+	private rightSide: boolean = true; // Initially the dash was cursor oriented, but now its switched to the last pressed direction
+
 	// Write your code here.
 
 	preUpdate(time: number, delta: number) {
@@ -121,65 +140,119 @@ export default class Character extends Phaser.GameObjects.Container {
 		if (angle < 0.45 && angle > -0.9) {
 			this.rectangle_1.rotation = angle;
 			this.rectangle_1.setFlip(false, false);
+			//this.rightSide = true;
 		} else if ((angle < -2.3 && angle >= -Math.PI) || (angle > 2.7 && angle <= Math.PI)) {
 			this.rectangle_1.rotation = angle;
-			this.rectangle_1.setFlip(false, true);	
+			this.rectangle_1.setFlip(false, true);
+			//this.rightSide = false;
 		}
 	}
 
-	update() {
+	update(time: number, delta: number) {
 		if (!this.active) return;
 		const body = this.body as Phaser.Physics.Arcade.Body;
+		const now = this.scene.time.now;
+		const shouldRegenStamina = (now - this.lastStaminaUsed > this.staminaRegenDelay);
+
+		if (this.dashing) {
+			body.setVelocityX(this.dashDirection * this.dashSpeed);
+			this.dashTimer -= delta;
+			if (this.dashTimer <= 0) {
+				this.dashing = false;
+				this.lastStaminaUsed = now;
+			}
+			return;
+		}
 
 		let sprinting = this.move_sprint_shift.isDown;
-		let walking = false;
+		let walking = true;
+
+		// Dash with E key
+		if (this.move_dash_e.isDown && !this.dashing && this.currentStamina - this.dashStaminaLoss > 0) {
+			this.dashing = true;
+			this.dashDirection = this.rightSide ? 1 : -1;
+			this.dashTimer = this.dashDuration;
+			this.currentStamina -= this.dashStaminaLoss;
+			this.lastStaminaUsed = now;
+		}
+
+		// Double-tap A for dash left
+		if (Phaser.Input.Keyboard.JustDown(this.move_left_a) && !this.dashing && this.currentStamina - this.dashStaminaLoss > 0) {
+			if (now - this.lastLeftTap < this.keyDelay) {
+				this.dashing = true;
+				this.dashDirection = -1;
+				this.dashTimer = this.dashDuration;
+				this.currentStamina -= this.dashStaminaLoss;
+				this.lastStaminaUsed = now;
+			}
+			this.lastLeftTap = now;
+			this.rightSide = false;
+		}
+
+		// Double-tap D for dash right
+		if (Phaser.Input.Keyboard.JustDown(this.move_right_d) && !this.dashing && this.currentStamina - this.dashStaminaLoss > 0) {
+			if (now - this.lastRightTap < this.keyDelay) {
+				this.dashing = true;
+				this.dashDirection = 1;
+				this.dashTimer = this.dashDuration;
+				this.currentStamina -= this.dashStaminaLoss;
+				this.lastStaminaUsed = now;
+			}
+			this.lastRightTap = now;
+			this.rightSide = true;
+		}
 
 		if (this.move_left_a.isDown && this.move_right_d.isDown) {
 			// If both keys are pressed, do nothing
 			body.setVelocityX(0);
 			walking = false;
-		} else if (this.move_left_a.isDown) {
+		} else if (this.move_left_a.isDown) { // Run left
 			if (sprinting && this.currentStamina - this.sprintStaminaLoss > 0) {
 				this.currentStamina -= this.sprintStaminaLoss;
 				body.setVelocityX(-this.runSpeed);
-			} else {
+				this.lastStaminaUsed = now;
+			} else { // Walk left + regen
 				body.setVelocityX(-this.walkSpeed);
-				if (this.currentStamina + this.staminaRegen < this.maxStamina) {
+				if (shouldRegenStamina && this.currentStamina + this.staminaRegen < this.maxStamina) {
 					this.currentStamina += this.staminaRegen;
-					console.log("REGEN-LEFT");
 				}
 			}
-		} else if (this.move_right_d.isDown) {
+			this.rightSide = false;
+		} else if (this.move_right_d.isDown) { // Run right
 			if (sprinting && this.currentStamina - this.sprintStaminaLoss > 0) {
 				this.currentStamina -= this.sprintStaminaLoss;
 				body.setVelocityX(this.runSpeed);
-			} else {
+				this.lastStaminaUsed = now;
+			} else { // Walk right + regen
 				body.setVelocityX(this.walkSpeed);
-				if (this.currentStamina + this.staminaRegen < this.maxStamina) {
+				if (shouldRegenStamina && this.currentStamina + this.staminaRegen < this.maxStamina) {
 					this.currentStamina += this.staminaRegen;
-					console.log("REGEN-RIGHT");
 				}
 			}
+			this.rightSide = true;
 		} else {
 			body.setVelocityX(0);
 			walking = false;
 		}
 
+		// Jump
 		if ((this.move_up_w.isDown || this.move_up_space.isDown) && body.onFloor()) {
 			if (this.currentStamina - this.jumpStaminaLoss > 0 && !this.jumpActive) {
 				this.currentStamina -= this.jumpStaminaLoss; 
 				body.setVelocityY(-this.jumpHeight);
 				this.jumpActive = true;
+				this.lastStaminaUsed = now;
 			}
 		} else if (body.velocity.y > 0 && !body.onFloor()) {
 			this.jumpActive = false;
-		} else if (!walking && body.velocity.x === 0) {
-			if (this.currentStamina + this.idleStaminaRegen < this.maxStamina) {
+			this.lastStaminaUsed = now;
+		} else if (!walking && body.velocity.y === 0) { // Regenerate stamina when idle
+			if (shouldRegenStamina && this.currentStamina + this.idleStaminaRegen < this.maxStamina) {
 				this.currentStamina += this.idleStaminaRegen;
-				console.log("REGEN-IDLE");
 			}
 		}
 
+		// Update UI
 		this._HUD.updateStamina(this.currentStamina / this.maxStamina);
 	}
 

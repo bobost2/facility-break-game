@@ -126,6 +126,11 @@ export default class IntroLevel extends Phaser.Scene {
 		playerHUD.scaleY = 1;
 		uI.add(playerHUD);
 
+		// text_1
+		const text_1 = this.add.text(217, 62, "", {});
+		text_1.text = "Sample text";
+		text_1.setStyle({ "fontFamily": "Jersey10-Regular", "fontSize": "25px" });
+
 		// lists
 		const collisionList = [collision_layer];
 

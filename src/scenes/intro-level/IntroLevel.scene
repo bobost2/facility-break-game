@@ -66,6 +66,16 @@
                     "scaleY": 1
                 }
             ]
+        },
+        {
+            "type": "Text",
+            "id": "0cb3dc1d-bc1e-462a-9f16-c30593826403",
+            "label": "text_1",
+            "x": 217,
+            "y": 62,
+            "text": "Sample text",
+            "fontFamily": "Jersey10-Regular",
+            "fontSize": "25px"
         }
     ],
     "plainObjects": [
