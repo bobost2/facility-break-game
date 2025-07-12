@@ -107,6 +107,25 @@ export default class Character extends Phaser.GameObjects.Container {
 			enumerable: true
 		});
 
+		const camera = this.scene.cameras.main;
+		this.vCursor = { x: camera.width/2, y: camera.height/2 };
+
+		this.scene.input.on('pointermove', (pointer: Phaser.Input.Pointer) => {
+			if (this.scene.input.mouse?.locked) {
+				this.vCursor.x += pointer.movementX;
+				this.vCursor.y += pointer.movementY;
+				this.vCursor.x = Phaser.Math.Clamp(this.vCursor.x, 0, camera.width);
+				this.vCursor.y = Phaser.Math.Clamp(this.vCursor.y, 0, camera.height);
+			}
+		});
+
+		this.scene.input.on('pointerlockchange', (_: any, isLocked: boolean) => {
+			if (!isLocked) {
+				this.vCursor.x = camera.width / 2;
+				this.vCursor.y = camera.height / 2;
+			}
+		});
+
 		/* END-USER-CTR-CODE */
 	}
 
@@ -172,19 +191,16 @@ export default class Character extends Phaser.GameObjects.Container {
 		const pointer = this.scene.input.activePointer;
 		const camera = this.scene.cameras.main;
 
-		if (this.scene.input.mouse?.locked) {
-			this.vCursor.x += pointer.movementX;
-			this.vCursor.y += pointer.movementY;
-		} else {
+		if (!this.scene.input.mouse?.locked) {
 			this.vCursor.x = pointer.x;
 			this.vCursor.y = pointer.y;
-
-			const worldCursor = camera.getWorldPoint(this.vCursor.x, this.vCursor.y);
-			this.cursorX.setPosition(worldCursor.x, worldCursor.y);
+			this.vCursor.x = Phaser.Math.Clamp(this.vCursor.x, 0, camera.width);
+			this.vCursor.y = Phaser.Math.Clamp(this.vCursor.y, 0, camera.height);
 		}
 
-		//const camera = this.scene.cameras.main;
 		const worldPoint = camera.getWorldPoint(this.vCursor.x, this.vCursor.y);
+		this.cursorX.setPosition(worldPoint.x, worldPoint.y);
+
 		const body = this.body as Phaser.Physics.Arcade.Body;
 
 		const angle = Phaser.Math.Angle.Between(

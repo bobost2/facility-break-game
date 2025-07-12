@@ -104,65 +104,6 @@
             ]
         },
         {
-            "type": "EditableTilemapLayer",
-            "id": "4c4bd35f-0002-4862-844f-a9a344115c34",
-            "label": "layer",
-            "tilemapId": "cc48068b-13f6-48c5-a9aa-d2adc5da5693"
-        },
-        {
-            "type": "EditableTilemapLayer",
-            "id": "4a5cfae1-485a-4e80-b63f-4ce17b43c848",
-            "label": "collision-layer",
-            "scope": "CLASS",
-            "visible": false,
-            "tilemapId": "cc48068b-13f6-48c5-a9aa-d2adc5da5693"
-        },
-        {
-            "prefabId": "7a40e8d3-ed44-4357-ac0c-067dd54117a2",
-            "id": "3d347e94-4958-4d71-9618-8f5191863b83",
-            "unlock": [
-                "x",
-                "y",
-                "HUD"
-            ],
-            "label": "characterPlayer",
-            "scope": "CLASS",
-            "HUD": "playerHUD",
-            "x": 177,
-            "y": 136
-        },
-        {
-            "type": "Layer",
-            "id": "d952b983-efbf-4bca-a332-e25449be5e9b",
-            "label": "obstacles",
-            "list": [
-                {
-                    "prefabId": "e4ef6b70-d82a-4610-bb35-426cb579614b",
-                    "id": "c48a2b53-25ce-4e76-b8ad-6e39aa01ed08",
-                    "unlock": [
-                        "x",
-                        "y"
-                    ],
-                    "label": "hammer1",
-                    "x": 1024,
-                    "y": 112
-                },
-                {
-                    "prefabId": "e4ef6b70-d82a-4610-bb35-426cb579614b",
-                    "id": "e3e72ed0-bf7e-4d96-bfdd-8fba669ec402",
-                    "unlock": [
-                        "x",
-                        "y",
-                        "initDelay"
-                    ],
-                    "label": "hammer2",
-                    "initDelay": 200,
-                    "x": 1087,
-                    "y": 112
-                }
-            ]
-        },
-        {
             "type": "Layer",
             "id": "15a1c319-bb5c-4c75-9a14-22acdfbf2f70",
             "label": "tutorialText",
@@ -241,6 +182,65 @@
                     "functionCall": "openDoor",
                     "x": 2688,
                     "y": 96
+                }
+            ]
+        },
+        {
+            "type": "EditableTilemapLayer",
+            "id": "4c4bd35f-0002-4862-844f-a9a344115c34",
+            "label": "layer",
+            "tilemapId": "cc48068b-13f6-48c5-a9aa-d2adc5da5693"
+        },
+        {
+            "type": "EditableTilemapLayer",
+            "id": "4a5cfae1-485a-4e80-b63f-4ce17b43c848",
+            "label": "collision-layer",
+            "scope": "CLASS",
+            "visible": false,
+            "tilemapId": "cc48068b-13f6-48c5-a9aa-d2adc5da5693"
+        },
+        {
+            "prefabId": "7a40e8d3-ed44-4357-ac0c-067dd54117a2",
+            "id": "3d347e94-4958-4d71-9618-8f5191863b83",
+            "unlock": [
+                "x",
+                "y",
+                "HUD"
+            ],
+            "label": "characterPlayer",
+            "scope": "CLASS",
+            "HUD": "playerHUD",
+            "x": 177,
+            "y": 136
+        },
+        {
+            "type": "Layer",
+            "id": "d952b983-efbf-4bca-a332-e25449be5e9b",
+            "label": "obstacles",
+            "list": [
+                {
+                    "prefabId": "e4ef6b70-d82a-4610-bb35-426cb579614b",
+                    "id": "c48a2b53-25ce-4e76-b8ad-6e39aa01ed08",
+                    "unlock": [
+                        "x",
+                        "y"
+                    ],
+                    "label": "hammer1",
+                    "x": 1024,
+                    "y": 112
+                },
+                {
+                    "prefabId": "e4ef6b70-d82a-4610-bb35-426cb579614b",
+                    "id": "e3e72ed0-bf7e-4d96-bfdd-8fba669ec402",
+                    "unlock": [
+                        "x",
+                        "y",
+                        "initDelay"
+                    ],
+                    "label": "hammer2",
+                    "initDelay": 200,
+                    "x": 1087,
+                    "y": 112
                 }
             ]
         },

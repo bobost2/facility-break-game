@@ -5,9 +5,9 @@
 
 import Door from "../../prefabs/Door";
 import ConsumablePickup from "../../prefabs/ConsumablePickup";
+import TriggerBox from "../../prefabs/TriggerBox";
 import Character from "../../prefabs/Character";
 import Hammer from "../../prefabs/Hammer";
-import TriggerBox from "../../prefabs/TriggerBox";
 import PlayerHUD from "../../prefabs/ui/PlayerHUD";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
@@ -141,28 +141,6 @@ export default class IntroLevel extends Phaser.Scene {
 		const healthPack = new ConsumablePickup(this, 1808, 142);
 		pickups.add(healthPack);
 
-		// layer
-		editabletilemap.createLayer("layer", ["IndustrialTiles"], 0, 0);
-
-		// collision-layer
-		const collision_layer = editabletilemap.createLayer("collision-layer", ["CollisionsTilemap"], 0, 0)!;
-		collision_layer.visible = false;
-
-		// characterPlayer
-		const characterPlayer = new Character(this, 177, 136);
-		this.add.existing(characterPlayer);
-
-		// obstacles
-		const obstacles = this.add.layer();
-
-		// hammer1
-		const hammer1 = new Hammer(this, 1024, 112);
-		obstacles.add(hammer1);
-
-		// hammer2
-		const hammer2 = new Hammer(this, 1087, 112);
-		obstacles.add(hammer2);
-
 		// tutorialText
 		const tutorialText = this.add.layer();
 
@@ -206,6 +184,28 @@ export default class IntroLevel extends Phaser.Scene {
 		const triggerBox = new TriggerBox(this, 2688, 96);
 		tutorialText.add(triggerBox);
 
+		// layer
+		editabletilemap.createLayer("layer", ["IndustrialTiles"], 0, 0);
+
+		// collision-layer
+		const collision_layer = editabletilemap.createLayer("collision-layer", ["CollisionsTilemap"], 0, 0)!;
+		collision_layer.visible = false;
+
+		// characterPlayer
+		const characterPlayer = new Character(this, 177, 136);
+		this.add.existing(characterPlayer);
+
+		// obstacles
+		const obstacles = this.add.layer();
+
+		// hammer1
+		const hammer1 = new Hammer(this, 1024, 112);
+		obstacles.add(hammer1);
+
+		// hammer2
+		const hammer2 = new Hammer(this, 1087, 112);
+		obstacles.add(hammer2);
+
 		// UI
 		const uI = this.add.layer();
 
@@ -224,15 +224,15 @@ export default class IntroLevel extends Phaser.Scene {
 		// healthPack (prefab fields)
 		healthPack.consumableType = "HealthPack";
 
+		// triggerBox (prefab fields)
+		triggerBox.triggerObject = turretDoorEnterance;
+		triggerBox.functionCall = "openDoor";
+
 		// characterPlayer (prefab fields)
 		characterPlayer.HUD = playerHUD;
 
 		// hammer2 (prefab fields)
 		hammer2.initDelay = 200;
-
-		// triggerBox (prefab fields)
-		triggerBox.triggerObject = turretDoorEnterance;
-		triggerBox.functionCall = "openDoor";
 
 		this.collision_layer = collision_layer;
 		this.characterPlayer = characterPlayer;
