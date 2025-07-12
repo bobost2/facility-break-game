@@ -1,0 +1,121 @@
+{
+    "id": "19276c5f-2c50-43bc-a984-2d5c7dc607db",
+    "sceneType": "PREFAB",
+    "settings": {
+        "exportClass": true,
+        "autoImport": true,
+        "preloadMethodName": "",
+        "preloadPackFiles": [],
+        "createMethodName": "",
+        "compilerOutputLanguage": "TYPE_SCRIPT",
+        "borderWidth": 360,
+        "borderHeight": 202
+    },
+    "displayList": [
+        {
+            "type": "Container",
+            "id": "887b0425-cc8a-4b52-a7e6-07a1cffefd5c",
+            "label": "container_1",
+            "list": [
+                {
+                    "type": "TileSprite",
+                    "id": "5f5fb48b-da59-4800-9468-da090844f5e7",
+                    "label": "turretTrajectory",
+                    "scope": "CLASS",
+                    "texture": {
+                        "key": "TurretTrajectory"
+                    },
+                    "x": 25,
+                    "originY": 0,
+                    "alpha": 0.2,
+                    "alphaTopLeft": 0.2,
+                    "alphaTopRight": 0.2,
+                    "alphaBottomLeft": 0.2,
+                    "alphaBottomRight": 0.2,
+                    "width": 10,
+                    "height": 500
+                },
+                {
+                    "type": "Image",
+                    "id": "1a2c22a1-d3f3-486c-8beb-4c2f2b6445eb",
+                    "label": "turretGun",
+                    "scope": "CLASS",
+                    "texture": {
+                        "key": "TurretGun"
+                    },
+                    "x": 25,
+                    "originY": 0
+                },
+                {
+                    "type": "Image",
+                    "id": "a5d69bf3-6057-4be8-996d-fde15c2cdaab",
+                    "label": "turretBase",
+                    "texture": {
+                        "key": "TurretBase"
+                    },
+                    "originX": 0,
+                    "originY": 0
+                }
+            ]
+        }
+    ],
+    "plainObjects": [],
+    "meta": {
+        "app": "Phaser Editor - Scene Editor",
+        "url": "https://phaser.io/editor",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
+    },
+    "prefabProperties": [
+        {
+            "name": "aimingDuration",
+            "label": "Aiming Duration",
+            "tooltip": "Aiming Duration",
+            "defValue": 1500,
+            "customDefinition": false,
+            "type": {
+                "id": "number"
+            }
+        },
+        {
+            "name": "freezingDuration",
+            "label": "Freezing Duration",
+            "tooltip": "Freezing Duration",
+            "defValue": 200,
+            "customDefinition": false,
+            "type": {
+                "id": "number"
+            }
+        },
+        {
+            "name": "cooldownDuration",
+            "label": "Cooldown Duration",
+            "tooltip": "Cooldown Duration",
+            "defValue": 200,
+            "customDefinition": false,
+            "type": {
+                "id": "number"
+            }
+        },
+        {
+            "name": "projectileSpeed",
+            "label": "Projectile Speed",
+            "tooltip": "Projectile Speed",
+            "defValue": 600,
+            "customDefinition": false,
+            "type": {
+                "id": "number"
+            }
+        },
+        {
+            "name": "bulletDamage",
+            "label": "Bullet Damage",
+            "tooltip": "Bullet Damage",
+            "defValue": 25,
+            "customDefinition": false,
+            "type": {
+                "id": "number"
+            }
+        }
+    ]
+}

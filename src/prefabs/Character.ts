@@ -13,10 +13,22 @@ export default class Character extends Phaser.GameObjects.Container {
 	constructor(scene: Phaser.Scene, x?: number, y?: number) {
 		super(scene, x ?? 0, y ?? 0);
 
+		// shieldIcon
+		const shieldIcon = scene.add.image(0, -25, "Shield");
+		shieldIcon.scaleX = 0.75;
+		shieldIcon.scaleY = 0.75;
+		shieldIcon.visible = false;
+		shieldIcon.alpha = 0.4;
+		shieldIcon.alphaTopLeft = 0.4;
+		shieldIcon.alphaTopRight = 0.4;
+		shieldIcon.alphaBottomLeft = 0.4;
+		shieldIcon.alphaBottomRight = 0.4;
+		this.add(shieldIcon);
+
 		// rectangle_1
-		const rectangle_1 = scene.add.sprite(0, 0, "ProtHands", 0);
+		const rectangle_1 = scene.add.sprite(0, -2, "ProtHands", 0);
 		rectangle_1.scaleX = 0.6;
-		rectangle_1.scaleY = 0.4;
+		rectangle_1.scaleY = 0.6;
 		rectangle_1.setOrigin(0, 0.5);
 		this.add(rectangle_1);
 
@@ -50,6 +62,7 @@ export default class Character extends Phaser.GameObjects.Container {
 		// consume_stamina_b
 		const consume_stamina_b = this.scene.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.B);
 
+		this.shieldIcon = shieldIcon;
 		this.rectangle_1 = rectangle_1;
 		this.move_left_a = move_left_a;
 		this.move_right_d = move_right_d;
@@ -58,20 +71,23 @@ export default class Character extends Phaser.GameObjects.Container {
 		this.move_sprint_shift = move_sprint_shift;
 		this.move_dash_e = move_dash_e;
 		this.consume_health_v = consume_health_v;
-		this.consume_stamina_b = consume_stamina_b; 
+		this.consume_stamina_b = consume_stamina_b;
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.
 		this.cursorX = scene.add.image(0, 0, "CursorX");
 		this.cursorX.setOrigin(0.5, 0.5);
 
-		// Set the container to simulate a physics body
 		scene.physics.world.enable(this);
 		(this.body as Phaser.Physics.Arcade.Body)
 		.setCollideWorldBounds(true)
 		.setBounce(0)
 		.setSize(15, 30)
 		.setOffset(-7, -9); // This is the hitbox
+
+		scene.physics.add.existing(this.rectangle_1, true);
+		const blockBody = this.rectangle_1.body as Phaser.Physics.Arcade.Body;
+		blockBody.setSize(20, 25);
 
 		scene.cameras.main.startFollow(this, true, 0.1, 0.1).setDeadzone(50, 50);
 		scene.cameras.main.fadeIn(1000, 0, 0, 0);
@@ -86,7 +102,6 @@ export default class Character extends Phaser.GameObjects.Container {
 			this.scene.events.off(Phaser.Scenes.Events.UPDATE, this.update, this);
 		});
 
-		// Defer HUD checks until after it's set via prefab props
 		Object.defineProperty(this, "HUD", {
 			get: () => this._HUD,
 			set: (value: Phaser.GameObjects.GameObject) => {
@@ -112,8 +127,8 @@ export default class Character extends Phaser.GameObjects.Container {
 
 		this.scene.input.on('pointermove', (pointer: Phaser.Input.Pointer) => {
 			if (this.scene.input.mouse?.locked) {
-				this.vCursor.x += pointer.movementX;
-				this.vCursor.y += pointer.movementY;
+				this.vCursor.x += pointer.movementX * 0.5;
+				this.vCursor.y += pointer.movementY * 0.5;
 				this.vCursor.x = Phaser.Math.Clamp(this.vCursor.x, 0, camera.width);
 				this.vCursor.y = Phaser.Math.Clamp(this.vCursor.y, 0, camera.height);
 			}
@@ -129,7 +144,8 @@ export default class Character extends Phaser.GameObjects.Container {
 		/* END-USER-CTR-CODE */
 	}
 
-	private rectangle_1: Phaser.GameObjects.Sprite;
+	private shieldIcon: Phaser.GameObjects.Image;
+	public rectangle_1: Phaser.GameObjects.Sprite;
 	private move_left_a: Phaser.Input.Keyboard.Key;
 	private move_right_d: Phaser.Input.Keyboard.Key;
 	private move_up_w: Phaser.Input.Keyboard.Key;
@@ -154,6 +170,7 @@ export default class Character extends Phaser.GameObjects.Container {
 	public maxHealth: number = 100;
 	public healthRegenDelay: number = 1000;
 	public healthRegenMultiplier: number = 0.1;
+	public blockStaminaPenalty: number = 20;
 
 	/* START-USER-CODE */
 	// Health related properties
@@ -180,9 +197,10 @@ export default class Character extends Phaser.GameObjects.Container {
 	private healthPackAmount: number = 0;
 	private energyDrinkAmount: number = 3; // change to 0
 
-	// Write your code here.
-
+	//Other
+	private currentlyBlocking: boolean = false;
 	private vCursor = {x: 0, y: 0};
+	private lastValidRotation: number = 0; 
 
 	preUpdate(_time: number, _delta: number) {		
 		if (!this.active) return;
@@ -208,15 +226,28 @@ export default class Character extends Phaser.GameObjects.Container {
 			worldPoint.x, worldPoint.y
 		);
 
+		let sideMultiplier = 1;
+
 		if (angle < 0.45 && angle > -0.9) {
 			this.rectangle_1.rotation = angle;
 			this.rectangle_1.setFlip(false, false);
+			this.lastValidRotation = angle;
+			sideMultiplier = -1;
 			//this.rightSide = true;
 		} else if ((angle < -2.3 && angle >= -Math.PI) || (angle > 2.7 && angle <= Math.PI)) {
 			this.rectangle_1.rotation = angle;
 			this.rectangle_1.setFlip(false, true);
+			this.lastValidRotation = angle;
 			//this.rightSide = false;
 		}
+
+		const rectBody = this.rectangle_1.body as Phaser.Physics.Arcade.Body;
+
+		const offsetX = (Math.cos(this.lastValidRotation) * 20);
+		const offsetY = (Math.sin(this.lastValidRotation) * 20) - 10;
+
+		rectBody.x = body.center.x + offsetX - rectBody.width / 2;
+		rectBody.y = body.center.y + offsetY - rectBody.height / 2;
 	}
 
 	update(_time: number, delta: number) {
@@ -225,8 +256,8 @@ export default class Character extends Phaser.GameObjects.Container {
 
 		const body = this.body as Phaser.Physics.Arcade.Body;
 		const now = this.scene.time.now;
-		const shouldRegenStamina = (now - this.lastStaminaUsed > this.staminaRegenDelay);
 
+		let shouldRegenStamina = (now - this.lastStaminaUsed > this.staminaRegenDelay);
 		let sprinting = this.move_sprint_shift.isDown;
 		let walking = true;
 
@@ -236,6 +267,18 @@ export default class Character extends Phaser.GameObjects.Container {
 
 		if (Phaser.Input.Keyboard.JustDown(this.consume_stamina_b)) {
 			this.useEnergyDrink();
+		}
+
+		const pointer = this.scene.input.activePointer;
+
+		if (pointer.isDown && pointer.rightButtonDown() 
+			&& this.currentStamina - this.blockStaminaPenalty > 0) {
+			shouldRegenStamina = false;
+			this.shieldIcon.visible = true;
+			this.currentlyBlocking = true;
+		} else {
+			this.shieldIcon.visible = false;
+			this.currentlyBlocking = false;
 		}
 
 		// Jump
@@ -389,6 +432,30 @@ export default class Character extends Phaser.GameObjects.Container {
 			this._HUD.updateStamina(this.currentStamina / this.maxStamina);
 			this._HUD.updateEnergyDrinkAmount(this.energyDrinkAmount);
 		}
+	}
+
+	public takeDamage(amount: number) {
+		if (this.hasCharacterDied) return; // Prevent damage after death
+		this.currentHealth -= amount;
+
+		if (this.currentHealth <= 0) {
+			this.currentHealth = 0;
+			this._HUD.updateHealth(0);
+			this.hasCharacterDied = true;
+			this.resetLevel();
+		} else {
+			this._HUD.updateHealth(this.currentHealth / this.maxHealth);
+		}
+	}
+
+	public tryBlock() : boolean {
+		if (this.currentStamina - this.blockStaminaPenalty > 0 && this.currentlyBlocking) {
+			this.currentStamina -= this.blockStaminaPenalty;
+			this._HUD.updateStamina(this.currentStamina / this.maxStamina);
+			return true;
+		} 
+
+		return false;
 	}
 
 	/* END-USER-CODE */

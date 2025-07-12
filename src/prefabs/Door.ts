@@ -43,6 +43,14 @@ export default class Door extends Phaser.GameObjects.Sprite {
 		});
 	}
 
+	public closeDoor() {
+		this.play({ key: "door-close", frameRate: 12, repeat: 0 });
+		this.once(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
+			const body = this.body as Phaser.Physics.Arcade.Body;
+			body.enable = true;
+		});
+	}
+
 	/* END-USER-CODE */
 }
 

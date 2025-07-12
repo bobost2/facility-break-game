@@ -21,11 +21,6 @@ export default class TriggerBox extends Phaser.GameObjects.Rectangle {
 		this.setVisible(false);
 		this.scene.physics.add.existing(this, true);
 
-		this.scene.events.once('update', () => {
-			//this.setSize(this.width, this.height);
-			//this.setPosition(x ?? 0, y ?? 0);
-		});
-
 		const addColliders = () => {
 			const characterPlayer = this.scene.children.list.find(obj => obj instanceof Character) as Character;
 

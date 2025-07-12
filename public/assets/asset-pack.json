@@ -208,6 +208,11 @@
                 "key": "Screen2"
             },
             {
+                "url": "assets/ui/Shield.png",
+                "type": "image",
+                "key": "Shield"
+            },
+            {
                 "url": "assets/ui/game-bars/StaminaBolt.png",
                 "type": "image",
                 "key": "StaminaBolt"
@@ -263,6 +268,26 @@
                 },
                 "type": "spritesheet",
                 "key": "Transporter3"
+            },
+            {
+                "url": "assets/enemies/TurretBase.png",
+                "type": "image",
+                "key": "TurretBase"
+            },
+            {
+                "url": "assets/enemies/TurretBullet.png",
+                "type": "image",
+                "key": "TurretBullet"
+            },
+            {
+                "url": "assets/enemies/TurretGun.png",
+                "type": "image",
+                "key": "TurretGun"
+            },
+            {
+                "url": "assets/enemies/TurretTrajectory.png",
+                "type": "image",
+                "key": "TurretTrajectory"
             }
         ]
     },

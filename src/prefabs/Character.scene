@@ -21,16 +21,35 @@
             "label": "PlayerContainer",
             "list": [
                 {
+                    "type": "Image",
+                    "id": "72f1237f-8a81-41d5-ba4d-b953c149844f",
+                    "label": "shieldIcon",
+                    "scope": "CLASS",
+                    "texture": {
+                        "key": "Shield"
+                    },
+                    "y": -25,
+                    "scaleX": 0.75,
+                    "scaleY": 0.75,
+                    "visible": false,
+                    "alpha": 0.4,
+                    "alphaTopLeft": 0.4,
+                    "alphaTopRight": 0.4,
+                    "alphaBottomLeft": 0.4,
+                    "alphaBottomRight": 0.4
+                },
+                {
                     "type": "Sprite",
                     "id": "8cda4c3a-b279-430d-a026-67dfa4205a9b",
                     "label": "rectangle_1",
-                    "scope": "CLASS",
+                    "scope": "PUBLIC",
                     "texture": {
                         "key": "ProtHands",
                         "frame": 0
                     },
+                    "y": -2,
                     "scaleX": 0.6,
-                    "scaleY": 0.4,
+                    "scaleY": 0.6,
                     "originX": 0
                 },
                 {
@@ -42,15 +61,6 @@
                     "fillColor": "#9e9e9e",
                     "width": 12,
                     "height": 30
-                },
-                {
-                    "type": "Image",
-                    "id": "b92e041e-3a5e-4353-a693-dab9121c2346",
-                    "label": "cursorX",
-                    "scope": "CLASS",
-                    "texture": {
-                        "key": "CursorX"
-                    }
                 }
             ]
         }
@@ -267,6 +277,16 @@
             "label": "Health Regen Multiplier",
             "tooltip": "Health Regen Multiplier",
             "defValue": 0.1,
+            "customDefinition": false,
+            "type": {
+                "id": "number"
+            }
+        },
+        {
+            "name": "blockStaminaPenalty",
+            "label": "Block Stamina Penalty",
+            "tooltip": "Block Stamina Penalty",
+            "defValue": 20,
             "customDefinition": false,
             "type": {
                 "id": "number"
