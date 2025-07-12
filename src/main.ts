@@ -37,7 +37,7 @@ window.addEventListener('load', function () {
 			default: "arcade",
 			arcade: {
 				gravity: { x: 0, y: 500 },
-				debug: true
+				debug: false
 			},
 		}
 	});
