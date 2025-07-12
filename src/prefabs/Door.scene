@@ -1,0 +1,41 @@
+{
+    "id": "9043c36a-dadc-489d-b57f-6a6776095848",
+    "settings": {
+        "createMethodName": "",
+        "preloadMethodName": "",
+        "compilerOutputLanguage": "TYPE_SCRIPT",
+        "exportClass": true,
+        "autoImport": true,
+        "importFileExtension": false,
+        "generateAwakeHandler": false,
+        "compilerInsertSpaces": false,
+        "compilerTabSize": 4,
+        "borderWidth": 360,
+        "borderHeight": 202,
+        "borderX": 0,
+        "borderY": 0
+    },
+    "sceneType": "PREFAB",
+    "displayList": [
+        {
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "type": "Sprite",
+            "id": "e0d6fe54-c06f-438a-9c72-407588550160",
+            "label": "doorSprite",
+            "texture": {
+                "key": "Entry",
+                "frame": 0
+            },
+            "x": 0,
+            "y": 0
+        }
+    ],
+    "meta": {
+        "app": "Phaser Editor 2D - Scene Editor",
+        "url": "https://phasereditor2d.com",
+        "contentType": "phasereditor2d.core.scene.SceneContentType"
+    }
+}

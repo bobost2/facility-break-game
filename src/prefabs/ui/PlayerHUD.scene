@@ -21,83 +21,152 @@
             "list": [
                 {
                     "type": "Container",
-                    "id": "c780c1e9-2ea7-42b6-8bad-fb5a4a31891d",
-                    "label": "StaminaBarUI",
-                    "x": 113,
-                    "y": -117,
+                    "id": "95208935-9635-462c-bef5-ebffa3bc4402",
+                    "label": "consumablesGroup",
+                    "x": -60,
+                    "y": -89,
                     "list": [
                         {
-                            "type": "Image",
-                            "id": "fb59ad9b-283b-4785-ae63-88eb6750b4f2",
-                            "label": "barStaminaEmpty",
-                            "texture": {
-                                "key": "BarEmpty"
-                            },
-                            "x": 85,
-                            "y": 13
+                            "type": "Container",
+                            "id": "d412c851-14d1-454f-9521-5b5b02abab9e",
+                            "label": "staminaConsumableGroup",
+                            "x": 314.00001525878906,
+                            "list": [
+                                {
+                                    "type": "Image",
+                                    "id": "91968a64-f9f1-4d29-8f62-b9a42bf12268",
+                                    "label": "energyDrinkUI",
+                                    "texture": {
+                                        "key": "EnergyDrinkUI"
+                                    },
+                                    "x": 11,
+                                    "y": 9
+                                },
+                                {
+                                    "type": "Text",
+                                    "id": "a329fff9-5397-4081-a383-a2e9f5500101",
+                                    "label": "energyDrinkAmountText",
+                                    "scope": "CLASS",
+                                    "originX": 1,
+                                    "text": "(B) x0",
+                                    "align": "right",
+                                    "fontFamily": "Jersey10-Regular"
+                                }
+                            ]
                         },
                         {
-                            "type": "TileSprite",
-                            "id": "6f9e08af-4432-4fa5-a3d0-88354fb9d93e",
-                            "label": "barStamina",
-                            "scope": "CLASS",
-                            "texture": {
-                                "key": "BarStamina"
-                            },
-                            "x": 21,
-                            "y": 13,
-                            "originX": 0,
-                            "width": 128,
-                            "height": 16
-                        },
-                        {
-                            "type": "Image",
-                            "id": "a5c7bd52-9aae-451e-b599-94061e5bb8f3",
-                            "label": "staminaBolt",
-                            "texture": {
-                                "key": "StaminaBolt"
-                            },
-                            "x": 155,
-                            "y": 13
+                            "type": "Container",
+                            "id": "05d52e50-a45a-4590-b9aa-c902d0ec778d",
+                            "label": "healthConsumableGroup",
+                            "list": [
+                                {
+                                    "type": "Image",
+                                    "id": "a70e2ff1-17e6-4b6d-8c95-553b63555d1a",
+                                    "label": "healthPackUI",
+                                    "texture": {
+                                        "key": "HealthPackUI"
+                                    },
+                                    "y": 8
+                                },
+                                {
+                                    "type": "Text",
+                                    "id": "761f747d-dc3d-4533-8bfb-3a4cddd771ca",
+                                    "label": "healthPackAmountText",
+                                    "scope": "CLASS",
+                                    "x": 14,
+                                    "text": "x0 (V)",
+                                    "fontFamily": "Jersey10-Regular"
+                                }
+                            ]
                         }
                     ]
                 },
                 {
                     "type": "Container",
-                    "id": "2af139bb-2f69-4f33-99f6-0bff27918e43",
-                    "label": "HealthBarUI",
+                    "id": "60e273e8-9005-4d28-a978-c5e7196956ca",
+                    "label": "vitalBarsGroup",
                     "x": -59,
-                    "y": -104,
+                    "y": -117,
                     "list": [
                         {
-                            "type": "Image",
-                            "id": "0ed4f05e-fbde-4c7e-9afb-01e8f6d33366",
-                            "label": "barHealthEmpty",
-                            "texture": {
-                                "key": "BarEmpty"
-                            },
-                            "x": 72
+                            "type": "Container",
+                            "id": "c780c1e9-2ea7-42b6-8bad-fb5a4a31891d",
+                            "label": "StaminaBarUI",
+                            "x": 172,
+                            "list": [
+                                {
+                                    "type": "Image",
+                                    "id": "fb59ad9b-283b-4785-ae63-88eb6750b4f2",
+                                    "label": "barStaminaEmpty",
+                                    "texture": {
+                                        "key": "BarEmpty"
+                                    },
+                                    "x": 85,
+                                    "y": 13
+                                },
+                                {
+                                    "type": "TileSprite",
+                                    "id": "6f9e08af-4432-4fa5-a3d0-88354fb9d93e",
+                                    "label": "barStamina",
+                                    "scope": "CLASS",
+                                    "texture": {
+                                        "key": "BarStamina"
+                                    },
+                                    "x": 21,
+                                    "y": 13,
+                                    "originX": 0,
+                                    "width": 128,
+                                    "height": 16
+                                },
+                                {
+                                    "type": "Image",
+                                    "id": "a5c7bd52-9aae-451e-b599-94061e5bb8f3",
+                                    "label": "staminaBolt",
+                                    "texture": {
+                                        "key": "StaminaBolt"
+                                    },
+                                    "x": 155,
+                                    "y": 13
+                                }
+                            ]
                         },
                         {
-                            "type": "TileSprite",
-                            "id": "1e1d3e09-d8bc-4545-a55d-e39306529b67",
-                            "label": "barHealth",
-                            "scope": "CLASS",
-                            "texture": {
-                                "key": "BarHealth"
-                            },
-                            "x": 8,
-                            "originX": 0,
-                            "width": 128,
-                            "height": 16
-                        },
-                        {
-                            "type": "Image",
-                            "id": "efc1a718-18bd-4c6d-9688-6de8f059ab75",
-                            "label": "heart",
-                            "texture": {
-                                "key": "Heart"
-                            }
+                            "type": "Container",
+                            "id": "2af139bb-2f69-4f33-99f6-0bff27918e43",
+                            "label": "HealthBarUI",
+                            "y": 13,
+                            "list": [
+                                {
+                                    "type": "Image",
+                                    "id": "0ed4f05e-fbde-4c7e-9afb-01e8f6d33366",
+                                    "label": "barHealthEmpty",
+                                    "texture": {
+                                        "key": "BarEmpty"
+                                    },
+                                    "x": 72
+                                },
+                                {
+                                    "type": "TileSprite",
+                                    "id": "1e1d3e09-d8bc-4545-a55d-e39306529b67",
+                                    "label": "barHealth",
+                                    "scope": "CLASS",
+                                    "texture": {
+                                        "key": "BarHealth"
+                                    },
+                                    "x": 8,
+                                    "originX": 0,
+                                    "width": 128,
+                                    "height": 16
+                                },
+                                {
+                                    "type": "Image",
+                                    "id": "efc1a718-18bd-4c6d-9688-6de8f059ab75",
+                                    "label": "heart",
+                                    "texture": {
+                                        "key": "Heart"
+                                    }
+                                }
+                            ]
                         }
                     ]
                 }

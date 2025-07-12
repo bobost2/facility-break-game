@@ -36,7 +36,7 @@ export default class Hammer extends Phaser.GameObjects.Container {
 		this.add(blockingVolume2);
 
 		// killingVolume
-		const killingVolume = scene.add.rectangle(0, -3, 25, 10);
+		const killingVolume = scene.add.rectangle(0, -3, 38, 10);
 		killingVolume.visible = false;
 		killingVolume.isFilled = true;
 		killingVolume.fillColor = 15615815;
@@ -74,15 +74,15 @@ export default class Hammer extends Phaser.GameObjects.Container {
 		this.scene.physics.add.existing(this.blockingVolume2, true);
 		this.scene.physics.add.existing(this.killingVolume, true);
 
-		const characterPlayer = this.scene.children.list.find(obj => obj instanceof Character) as Character;
-
 		const addColliders = () => {
+			const characterPlayer = this.scene.children.list.find(obj => obj instanceof Character) as Character;
+
 			if (characterPlayer) {
 				this.scene.physics.add.collider(characterPlayer, this.blockingVolume1);
 				this.scene.physics.add.collider(characterPlayer, this.blockingVolume2);
 
 				this.scene.physics.add.overlap(characterPlayer, this.killingVolume, () => {
-					characterPlayer.dieFromEnvironment(); // Or your custom kill logic
+					characterPlayer.dieFromEnvironment();
 				});
 			} else {
 				console.warn("Character prefab not found in the scene. Retrying...");

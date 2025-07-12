@@ -53,5 +53,9 @@ window.addEventListener('load', function () {
 		}
 	});
 
+	window.addEventListener('contextmenu', (e) => {
+		e.preventDefault();
+	});
+
 	game.scene.start("Boot");
 });

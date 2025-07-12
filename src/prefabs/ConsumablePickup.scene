@@ -1,0 +1,69 @@
+{
+    "id": "b6c20489-75e9-4597-ac0f-7e1a1431b27d",
+    "sceneType": "PREFAB",
+    "settings": {
+        "exportClass": true,
+        "autoImport": true,
+        "preloadMethodName": "",
+        "preloadPackFiles": [],
+        "createMethodName": "",
+        "compilerOutputLanguage": "TYPE_SCRIPT",
+        "borderWidth": 360,
+        "borderHeight": 202
+    },
+    "displayList": [
+        {
+            "type": "Container",
+            "id": "e15f6a04-c15a-49bf-9805-4daf98d13154",
+            "label": "container_1",
+            "x": -1,
+            "y": -1,
+            "list": [
+                {
+                    "type": "Image",
+                    "id": "cf8ca57f-1dc9-419a-b87c-2cf8a1babad7",
+                    "label": "consumableImage",
+                    "scope": "CLASS",
+                    "texture": {
+                        "key": "EnergyDrink"
+                    },
+                    "scaleX": 0.9,
+                    "scaleY": 0.9
+                },
+                {
+                    "type": "Rectangle",
+                    "id": "365a765b-a7e1-4d13-b057-621d4bd7d582",
+                    "label": "pickupCollision",
+                    "scope": "CLASS",
+                    "visible": false,
+                    "isStroked": true,
+                    "width": 20,
+                    "height": 20
+                }
+            ]
+        }
+    ],
+    "plainObjects": [],
+    "meta": {
+        "app": "Phaser Editor - Scene Editor",
+        "url": "https://phaser.io/editor",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
+    },
+    "prefabProperties": [
+        {
+            "name": "consumableType",
+            "label": "Consumable Type",
+            "tooltip": "Consumable Type",
+            "defValue": "EnergyDrink",
+            "customDefinition": false,
+            "type": {
+                "id": "option",
+                "options": [
+                    "HealthPack",
+                    "EnergyDrink"
+                ]
+            }
+        }
+    ]
+}

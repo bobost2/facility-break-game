@@ -58,11 +58,6 @@ export default class Level extends Phaser.Scene {
 		const editabletilemap = this.add.tilemap("editabletilemap_2e517558-f44f-4ab6-bf90-2cec48f4276d");
 		editabletilemap.addTilesetImage("CollisionsTilemap");
 
-		// fufuSuperDino
-		const fufuSuperDino = this.add.image(428, 146, "FufuSuperDino");
-		fufuSuperDino.scaleX = 0.5;
-		fufuSuperDino.scaleY = 0.5;
-
 		// text
 		const text = this.add.text(421, 46, "", {});
 		text.setOrigin(0.5, 0.5);

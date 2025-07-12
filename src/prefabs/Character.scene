@@ -42,6 +42,15 @@
                     "fillColor": "#9e9e9e",
                     "width": 12,
                     "height": 30
+                },
+                {
+                    "type": "Image",
+                    "id": "b92e041e-3a5e-4353-a693-dab9121c2346",
+                    "label": "cursorX",
+                    "scope": "CLASS",
+                    "texture": {
+                        "key": "CursorX"
+                    }
                 }
             ]
         }
@@ -81,6 +90,18 @@
             "type": "Keyboard.Key",
             "label": "move_dash_e",
             "keyCode": "E"
+        },
+        {
+            "id": "d660db9b-7e56-4e3b-8e96-8320a7a6ddde",
+            "type": "Keyboard.Key",
+            "label": "consume_health_v",
+            "keyCode": "V"
+        },
+        {
+            "id": "aa01bb79-83a1-4e62-af54-29b949104bf6",
+            "type": "Keyboard.Key",
+            "label": "consume_stamina_b",
+            "keyCode": "B"
         }
     ],
     "meta": {

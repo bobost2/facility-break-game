@@ -56,6 +56,21 @@
                 "key": "CollisionsTilemap"
             },
             {
+                "url": "assets/ui/CursorX.png",
+                "type": "image",
+                "key": "CursorX"
+            },
+            {
+                "url": "assets/items/EnergyDrink.png",
+                "type": "image",
+                "key": "EnergyDrink"
+            },
+            {
+                "url": "assets/ui/consumables/EnergyDrinkUI.png",
+                "type": "image",
+                "key": "EnergyDrinkUI"
+            },
+            {
                 "url": "assets/packs/industrial/anims/Entry.png",
                 "frameConfig": {
                     "frameWidth": 32,
@@ -69,11 +84,6 @@
                 "key": "Entry"
             },
             {
-                "url": "assets/FufuSuperDino.png",
-                "type": "image",
-                "key": "FufuSuperDino"
-            },
-            {
                 "url": "assets/packs/industrial/anims/Hammer.png",
                 "frameConfig": {
                     "frameWidth": 32,
@@ -85,6 +95,16 @@
                 },
                 "type": "spritesheet",
                 "key": "Hammer"
+            },
+            {
+                "url": "assets/items/HealthPack.png",
+                "type": "image",
+                "key": "HealthPack"
+            },
+            {
+                "url": "assets/ui/consumables/HealthPackUI.png",
+                "type": "image",
+                "key": "HealthPackUI"
             },
             {
                 "url": "assets/ui/game-bars/Heart.png",

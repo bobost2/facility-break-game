@@ -1,0 +1,55 @@
+{
+    "id": "e868cbe4-d365-43f8-9ec8-8cfdb250b9fd",
+    "sceneType": "PREFAB",
+    "settings": {
+        "exportClass": true,
+        "autoImport": true,
+        "preloadMethodName": "",
+        "preloadPackFiles": [],
+        "createMethodName": "",
+        "compilerOutputLanguage": "TYPE_SCRIPT",
+        "borderWidth": 360,
+        "borderHeight": 202
+    },
+    "displayList": [
+        {
+            "type": "Rectangle",
+            "id": "80b0496d-9abe-4e04-b170-3d7beb54a122",
+            "label": "triggerBox",
+            "strokeColor": "#b95500",
+            "isStroked": true,
+            "width": 20,
+            "height": 128
+        }
+    ],
+    "plainObjects": [],
+    "meta": {
+        "app": "Phaser Editor - Scene Editor",
+        "url": "https://phaser.io/editor",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
+    },
+    "prefabProperties": [
+        {
+            "name": "triggerObject",
+            "label": "Trigger Object",
+            "tooltip": "Object to call the function",
+            "defValue": "",
+            "customDefinition": false,
+            "type": {
+                "id": "object-var",
+                "expressionType": "Phaser.GameObjects.GameObject"
+            }
+        },
+        {
+            "name": "functionCall",
+            "label": "Function to call",
+            "tooltip": "Function to call",
+            "defValue": "onTrigger",
+            "customDefinition": false,
+            "type": {
+                "id": "string"
+            }
+        }
+    ]
+}
