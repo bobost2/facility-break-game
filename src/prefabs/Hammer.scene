@@ -1,0 +1,109 @@
+{
+    "id": "e4ef6b70-d82a-4610-bb35-426cb579614b",
+    "sceneType": "PREFAB",
+    "settings": {
+        "exportClass": true,
+        "autoImport": true,
+        "preloadMethodName": "",
+        "preloadPackFiles": [],
+        "createMethodName": "",
+        "compilerOutputLanguage": "TYPE_SCRIPT",
+        "borderWidth": 360,
+        "borderHeight": 202
+    },
+    "displayList": [
+        {
+            "type": "Container",
+            "id": "69651a1a-3bc3-4f6c-861e-2d5b793eb711",
+            "label": "container_2",
+            "list": [
+                {
+                    "type": "Sprite",
+                    "id": "246f5182-4b7c-474f-8579-f85fd567d9a7",
+                    "label": "hammerSprite",
+                    "scope": "CLASS",
+                    "texture": {
+                        "key": "Hammer",
+                        "frame": 0
+                    },
+                    "scaleX": 1.5,
+                    "scaleY": 1.5,
+                    "animationKey": "hammer",
+                    "animationFrameRate": 12,
+                    "animationRepeat": -1,
+                    "animationRepeatDelay": 500,
+                    "animationPreview": true
+                },
+                {
+                    "type": "Rectangle",
+                    "id": "30886134-2340-43d5-8460-0ee3672cf582",
+                    "label": "blockingVolume1",
+                    "scope": "CLASS",
+                    "x": -17,
+                    "y": -48,
+                    "originY": 0,
+                    "visible": false,
+                    "isFilled": true,
+                    "fillColor": "#f1a956",
+                    "width": 10,
+                    "height": 50
+                },
+                {
+                    "type": "Rectangle",
+                    "id": "9a4440b4-a3fb-449d-a506-5ab06aab800a",
+                    "label": "blockingVolume2",
+                    "scope": "CLASS",
+                    "x": 17,
+                    "y": -48,
+                    "originY": 0,
+                    "visible": false,
+                    "isFilled": true,
+                    "fillColor": "#f1a956",
+                    "width": 10,
+                    "height": 50
+                },
+                {
+                    "type": "Rectangle",
+                    "id": "2a9e3d17-0fb2-4ef5-8fd1-6896097f9d2b",
+                    "label": "killingVolume",
+                    "scope": "CLASS",
+                    "y": -3,
+                    "visible": false,
+                    "isFilled": true,
+                    "fillColor": "#ee4747",
+                    "width": 25,
+                    "height": 10
+                }
+            ]
+        }
+    ],
+    "plainObjects": [],
+    "meta": {
+        "app": "Phaser Editor - Scene Editor",
+        "url": "https://phaser.io/editor",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
+    },
+    "prefabProperties": [
+        {
+            "name": "initDelay",
+            "label": "Initial Delay",
+            "tooltip": "Initial Delay",
+            "defValue": 0,
+            "customDefinition": false,
+            "type": {
+                "id": "number"
+            }
+        },
+        {
+            "name": "repeatDelay",
+            "label": "Repeat Delay",
+            "tooltip": "Repeat Delay",
+            "defValue": 500,
+            "customDefinition": false,
+            "type": {
+                "id": "number"
+            }
+        }
+    ]
+}

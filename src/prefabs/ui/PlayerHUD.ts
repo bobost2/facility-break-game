@@ -60,10 +60,16 @@ export default class PlayerHUD extends Phaser.GameObjects.Container {
 
 	// Write your code here.
 	private staminaBarMaxWidth: number = 128;
+	private healthBarMaxWidth: number = 128;
 
 	public updateStamina(staminaPercent: number) {
 		const calcStaminaWidth = this.staminaBarMaxWidth * staminaPercent;
 		this.barStamina.setSize(calcStaminaWidth, this.barStamina.height);
+	}
+
+	public updateHealth(healthPercent: number) {
+		const calcHealthWidth = this.healthBarMaxWidth * healthPercent;
+		this.barHealth.setSize(calcHealthWidth, this.barHealth.height);
 	}
 
 	/* END-USER-CODE */

@@ -220,6 +220,36 @@
             "type": {
                 "id": "number"
             }
+        },
+        {
+            "name": "maxHealth",
+            "label": "Max Health",
+            "tooltip": "Max Health",
+            "defValue": 100,
+            "customDefinition": false,
+            "type": {
+                "id": "number"
+            }
+        },
+        {
+            "name": "healthRegenDelay",
+            "label": "Health Regen Delay",
+            "tooltip": "Health Regen Delay",
+            "defValue": 1000,
+            "customDefinition": false,
+            "type": {
+                "id": "number"
+            }
+        },
+        {
+            "name": "healthRegenMultiplier",
+            "label": "Health Regen Multiplier",
+            "tooltip": "Health Regen Multiplier",
+            "defValue": 0.1,
+            "customDefinition": false,
+            "type": {
+                "id": "number"
+            }
         }
     ]
 }

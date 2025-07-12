@@ -67,6 +67,9 @@ export default class Character extends Phaser.GameObjects.Container {
 		scene.cameras.main.fadeIn(1000, 0, 0, 0);
 
 		this.scene.events.on(Phaser.Scenes.Events.UPDATE, this.update, this);
+		this.scene.events.on(Phaser.Scenes.Events.DESTROY, () => {
+			this.scene.events.off(Phaser.Scenes.Events.UPDATE, this.update, this);
+		});
 
 		// Defer HUD checks until after it's set via prefab props
 		Object.defineProperty(this, "HUD", {
@@ -107,12 +110,20 @@ export default class Character extends Phaser.GameObjects.Container {
 	public dashSpeed: number = 300;
 	public dashDuration: number = 250;
 	public staminaRegenDelay: number = 500;
+	public maxHealth: number = 100;
+	public healthRegenDelay: number = 1000;
+	public healthRegenMultiplier: number = 0.1;
 
 	/* START-USER-CODE */
+	// Health related properties
+	private currentHealth: number = this.maxHealth;
+
+	// Stamina related properties
 	private _HUD: PlayerHUD;
 	private currentStamina: number = this.maxStamina;
 	private lastStaminaUsed: number = 0;
 	private jumpActive: boolean = false;
+	private hasCharacterDied: boolean = false;
 
 	private lastLeftTap: number = 0;
 	private lastRightTap: number = 0;
@@ -124,8 +135,9 @@ export default class Character extends Phaser.GameObjects.Container {
 
 	// Write your code here.
 
-	preUpdate(time: number, delta: number) {
+	preUpdate(_time: number, _delta: number) {
 		if (!this.active) return;
+		if (this.hasCharacterDied) return;
 
 		const pointer = this.scene.input.activePointer;
 		const camera = this.scene.cameras.main;
@@ -148,8 +160,10 @@ export default class Character extends Phaser.GameObjects.Container {
 		}
 	}
 
-	update(time: number, delta: number) {
+	update(_time: number, delta: number) {
 		if (!this.active) return;
+		if (this.hasCharacterDied) return;
+
 		const body = this.body as Phaser.Physics.Arcade.Body;
 		const now = this.scene.time.now;
 		const shouldRegenStamina = (now - this.lastStaminaUsed > this.staminaRegenDelay);
@@ -254,6 +268,29 @@ export default class Character extends Phaser.GameObjects.Container {
 
 		// Update UI
 		this._HUD.updateStamina(this.currentStamina / this.maxStamina);
+		this._HUD.updateHealth(this.currentHealth / this.maxHealth);
+	}
+
+	private resetLevel() {
+		if (this.scene && this.scene.cameras) {
+			this.scene.cameras.main.stopFollow();
+			this.scene.cameras.main.fadeOut(1000, 0, 0, 0).once('camerafadeoutcomplete', () => {
+				this.scene.scene.restart();
+			});
+		}
+	}
+
+	public dieFromEnvironment() {
+		if (this.hasCharacterDied) return; // Prevent multiple calls
+
+		this.hasCharacterDied = true;
+		this.currentHealth = 0;
+		this._HUD.updateHealth(0);
+
+		const body = this.body as Phaser.Physics.Arcade.Body;
+		body.setVelocity(0, 0);
+		
+		this.resetLevel();
 	}
 
 	/* END-USER-CODE */
