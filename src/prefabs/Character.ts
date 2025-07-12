@@ -195,7 +195,7 @@ export default class Character extends Phaser.GameObjects.Container {
 
 	// Inventory
 	private healthPackAmount: number = 0;
-	private energyDrinkAmount: number = 3; // change to 0
+	private energyDrinkAmount: number = 0;
 
 	//Other
 	private currentlyBlocking: boolean = false;
