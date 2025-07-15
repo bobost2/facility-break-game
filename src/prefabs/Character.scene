@@ -44,23 +44,23 @@
                     "label": "rectangle_1",
                     "scope": "PUBLIC",
                     "texture": {
-                        "key": "ProtHands",
-                        "frame": 0
+                        "key": "PlayerHands"
                     },
-                    "y": -2,
-                    "scaleX": 0.6,
-                    "scaleY": 0.6,
+                    "x": -2,
+                    "y": -4,
                     "originX": 0
                 },
                 {
-                    "type": "Rectangle",
+                    "type": "Sprite",
                     "id": "74ac7f7a-5461-4a6c-883d-746b8a4465c0",
                     "label": "arcadesprite_1",
+                    "scope": "CLASS",
+                    "texture": {
+                        "key": "Player",
+                        "frame": 0
+                    },
                     "y": 7,
-                    "isFilled": true,
-                    "fillColor": "#9e9e9e",
-                    "width": 12,
-                    "height": 30
+                    "animationPlayMethod": 1
                 }
             ]
         }

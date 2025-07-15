@@ -2,6 +2,11 @@
     "section1": {
         "files": [
             {
+                "url": "assets/anims.json",
+                "type": "animation",
+                "key": "anims"
+            },
+            {
                 "url": "assets/ui/game-bars/BarEmpty.png",
                 "type": "image",
                 "key": "BarEmpty"
@@ -151,11 +156,6 @@
                 "key": "Money"
             },
             {
-                "url": "assets/packs/industrial/anims/object-anims.json",
-                "type": "animation",
-                "key": "object-anims"
-            },
-            {
                 "url": "assets/packs/industrial/anims/Platform.png",
                 "frameConfig": {
                     "frameWidth": 32,
@@ -167,6 +167,29 @@
                 },
                 "type": "spritesheet",
                 "key": "Platform"
+            },
+            {
+                "url": "assets/character/Player.png",
+                "frameConfig": {
+                    "frameWidth": 30,
+                    "frameHeight": 30,
+                    "startFrame": 0,
+                    "endFrame": 11,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "Player"
+            },
+            {
+                "url": "assets/character/PlayerAnims.json",
+                "type": "animation",
+                "key": "PlayerAnims"
+            },
+            {
+                "url": "assets/character/PlayerHands.png",
+                "type": "image",
+                "key": "PlayerHands"
             },
             {
                 "url": "assets/character/prototype/ProtHands.png",

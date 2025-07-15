@@ -26,16 +26,13 @@ export default class Character extends Phaser.GameObjects.Container {
 		this.add(shieldIcon);
 
 		// rectangle_1
-		const rectangle_1 = scene.add.sprite(0, -2, "ProtHands", 0);
-		rectangle_1.scaleX = 0.6;
-		rectangle_1.scaleY = 0.6;
+		const rectangle_1 = scene.add.sprite(-2, -4, "PlayerHands");
 		rectangle_1.setOrigin(0, 0.5);
 		this.add(rectangle_1);
 
 		// arcadesprite_1
-		const arcadesprite_1 = scene.add.rectangle(0, 7, 12, 30);
-		arcadesprite_1.isFilled = true;
-		arcadesprite_1.fillColor = 10395294;
+		const arcadesprite_1 = scene.add.sprite(0, 7, "Player", 0);
+		arcadesprite_1.play("");
 		this.add(arcadesprite_1);
 
 		// move_left_a
@@ -64,6 +61,7 @@ export default class Character extends Phaser.GameObjects.Container {
 
 		this.shieldIcon = shieldIcon;
 		this.rectangle_1 = rectangle_1;
+		this.arcadesprite_1 = arcadesprite_1;
 		this.move_left_a = move_left_a;
 		this.move_right_d = move_right_d;
 		this.move_up_w = move_up_w;
@@ -87,7 +85,7 @@ export default class Character extends Phaser.GameObjects.Container {
 
 		scene.physics.add.existing(this.rectangle_1, true);
 		const blockBody = this.rectangle_1.body as Phaser.Physics.Arcade.Body;
-		blockBody.setSize(20, 25);
+		blockBody.setSize(15, 25);
 
 		scene.cameras.main.startFollow(this, true, 0.1, 0.1).setDeadzone(50, 50);
 		scene.cameras.main.fadeIn(1000, 0, 0, 0);
@@ -146,6 +144,7 @@ export default class Character extends Phaser.GameObjects.Container {
 
 	private shieldIcon: Phaser.GameObjects.Image;
 	public rectangle_1: Phaser.GameObjects.Sprite;
+	private arcadesprite_1: Phaser.GameObjects.Sprite;
 	private move_left_a: Phaser.Input.Keyboard.Key;
 	private move_right_d: Phaser.Input.Keyboard.Key;
 	private move_up_w: Phaser.Input.Keyboard.Key;
@@ -201,6 +200,7 @@ export default class Character extends Phaser.GameObjects.Container {
 	private currentlyBlocking: boolean = false;
 	private vCursor = {x: 0, y: 0};
 	private lastValidRotation: number = 0; 
+	private sideMultiplier: number = 1;
 
 	preUpdate(_time: number, _delta: number) {		
 		if (!this.active) return;
@@ -226,24 +226,27 @@ export default class Character extends Phaser.GameObjects.Container {
 			worldPoint.x, worldPoint.y
 		);
 
-		let sideMultiplier = 1;
-
 		if (angle < 0.45 && angle > -0.9) {
 			this.rectangle_1.rotation = angle;
 			this.rectangle_1.setFlip(false, false);
+			this.rectangle_1.setPosition(-2, -4);
 			this.lastValidRotation = angle;
-			sideMultiplier = -1;
+			this.arcadesprite_1.setFlipX(false);
+			this.sideMultiplier = -1;
 			//this.rightSide = true;
 		} else if ((angle < -2.3 && angle >= -Math.PI) || (angle > 2.7 && angle <= Math.PI)) {
 			this.rectangle_1.rotation = angle;
 			this.rectangle_1.setFlip(false, true);
+			this.rectangle_1.setPosition(2, -4);
 			this.lastValidRotation = angle;
+			this.arcadesprite_1.setFlipX(true);
+			this.sideMultiplier = 1;
 			//this.rightSide = false;
 		}
 
 		const rectBody = this.rectangle_1.body as Phaser.Physics.Arcade.Body;
 
-		const offsetX = (Math.cos(this.lastValidRotation) * 20);
+		const offsetX = (Math.cos(this.lastValidRotation) * 20) + (this.sideMultiplier * 10);
 		const offsetY = (Math.sin(this.lastValidRotation) * 20) - 10;
 
 		rectBody.x = body.center.x + offsetX - rectBody.width / 2;
@@ -256,10 +259,12 @@ export default class Character extends Phaser.GameObjects.Container {
 
 		const body = this.body as Phaser.Physics.Arcade.Body;
 		const now = this.scene.time.now;
+		const isOnFloor = body.onFloor();
 
 		let shouldRegenStamina = (now - this.lastStaminaUsed > this.staminaRegenDelay);
 		let sprinting = this.move_sprint_shift.isDown;
 		let walking = true;
+		let sprintingActive = false;
 
 		if (Phaser.Input.Keyboard.JustDown(this.consume_health_v)) {
 			this.useHealthPack();
@@ -298,6 +303,7 @@ export default class Character extends Phaser.GameObjects.Container {
 		if (this.dashing) {
 			body.setVelocityX(this.dashDirection * this.dashSpeed);
 			this.dashTimer -= delta;
+			this.arcadesprite_1.play("sprint-player", true);
 			if (this.dashTimer <= 0) {
 				this.dashing = false;
 				this.lastStaminaUsed = now;
@@ -344,16 +350,20 @@ export default class Character extends Phaser.GameObjects.Container {
 			// If both keys are pressed, do nothing
 			body.setVelocityX(0);
 			walking = false;
+			this.arcadesprite_1.play("idle-player", true);
 		} else if (this.move_left_a.isDown) { // Run left
 			if (sprinting && this.currentStamina - this.sprintStaminaLoss > 0) {
 				this.currentStamina -= this.sprintStaminaLoss;
 				body.setVelocityX(-this.runSpeed);
 				this.lastStaminaUsed = now;
+				this.arcadesprite_1.play("sprint-player", true);
+				sprintingActive = true;
 			} else { // Walk left + regen
 				body.setVelocityX(-this.walkSpeed);
 				if (shouldRegenStamina && this.currentStamina + this.staminaRegen < this.maxStamina) {
 					this.currentStamina += this.staminaRegen;
 				}
+				if (isOnFloor) this.arcadesprite_1.play("walking-player", true);
 			}
 			this.rightSide = false;
 		} else if (this.move_right_d.isDown) { // Run right
@@ -361,22 +371,30 @@ export default class Character extends Phaser.GameObjects.Container {
 				this.currentStamina -= this.sprintStaminaLoss;
 				body.setVelocityX(this.runSpeed);
 				this.lastStaminaUsed = now;
+				this.arcadesprite_1.play("sprint-player", true);
+				sprintingActive = true;
 			} else { // Walk right + regen
 				body.setVelocityX(this.walkSpeed);
 				if (shouldRegenStamina && this.currentStamina + this.staminaRegen < this.maxStamina) {
 					this.currentStamina += this.staminaRegen;
 				}
+				if (isOnFloor) this.arcadesprite_1.play("walking-player", true);
 			}
 			this.rightSide = true;
 		} else {
 			body.setVelocityX(0);
 			walking = false;
+			if (isOnFloor) this.arcadesprite_1.play("idle-player", true);
 		}
 
 		if (!walking && body.velocity.y === 0) { // Regenerate stamina when idle
 			if (shouldRegenStamina && this.currentStamina + this.idleStaminaRegen < this.maxStamina) {
 				this.currentStamina += this.idleStaminaRegen;
 			}
+		}
+
+		if (!isOnFloor && !sprintingActive) {
+			this.arcadesprite_1.play("fall-player", true);
 		}
 
 		// Update UI
@@ -395,15 +413,7 @@ export default class Character extends Phaser.GameObjects.Container {
 
 	public dieFromEnvironment() {
 		if (this.hasCharacterDied) return; // Prevent multiple calls
-
-		this.hasCharacterDied = true;
-		this.currentHealth = 0;
-		this._HUD.updateHealth(0);
-
-		const body = this.body as Phaser.Physics.Arcade.Body;
-		body.setVelocity(0, 0);
-
-		this.resetLevel();
+		this.die(false);
 	}
 
 	public pickUpHealthPack() {
@@ -439,10 +449,7 @@ export default class Character extends Phaser.GameObjects.Container {
 		this.currentHealth -= amount;
 
 		if (this.currentHealth <= 0) {
-			this.currentHealth = 0;
-			this._HUD.updateHealth(0);
-			this.hasCharacterDied = true;
-			this.resetLevel();
+			this.die();
 		} else {
 			this._HUD.updateHealth(this.currentHealth / this.maxHealth);
 		}
@@ -456,6 +463,27 @@ export default class Character extends Phaser.GameObjects.Container {
 		} 
 
 		return false;
+	}
+
+	private die(slowAnimation: boolean = true) {
+		if (this.hasCharacterDied) return; // Prevent multiple calls
+
+		this.hasCharacterDied = true;
+		this.currentHealth = 0;
+		this._HUD.updateHealth(0);
+
+		this.rectangle_1.setVisible(false);
+
+		const body = this.body as Phaser.Physics.Arcade.Body;
+		body.setVelocity(0, 0);
+
+		if (slowAnimation) {
+			this.arcadesprite_1.play({ key: "die-player", frameRate: 8, repeat: 0 },)
+		} else {
+			this.arcadesprite_1.play("die-player", true);
+		}
+
+		this.resetLevel();
 	}
 
 	/* END-USER-CODE */
