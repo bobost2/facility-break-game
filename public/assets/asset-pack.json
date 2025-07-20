@@ -66,6 +66,20 @@
                 "key": "CursorX"
             },
             {
+                "url": [
+                    "assets/audio/sounds/door/door-close.wav"
+                ],
+                "type": "audio",
+                "key": "door-close"
+            },
+            {
+                "url": [
+                    "assets/audio/sounds/door/door-open.wav"
+                ],
+                "type": "audio",
+                "key": "door-open"
+            },
+            {
                 "url": "assets/items/EnergyDrink.png",
                 "type": "image",
                 "key": "EnergyDrink"
@@ -87,6 +101,27 @@
                 },
                 "type": "spritesheet",
                 "key": "Entry"
+            },
+            {
+                "url": [
+                    "assets/audio/sounds/dash/foley-jump-comic-swoosh-fast-02.wav"
+                ],
+                "type": "audio",
+                "key": "foley-jump-comic-swoosh-fast-02"
+            },
+            {
+                "url": [
+                    "assets/audio/sounds/deaths-fall-impact/gore-guts-bloody-guts-drop-down-single-impact-wet-03.wav"
+                ],
+                "type": "audio",
+                "key": "gore-guts-bloody-guts-drop-down-single-impact-wet-03"
+            },
+            {
+                "url": [
+                    "assets/audio/sounds/deflect-impact/gore-impact-guts-wet-02.wav"
+                ],
+                "type": "audio",
+                "key": "gore-impact-guts-wet-02"
             },
             {
                 "url": "assets/packs/industrial/anims/Hammer.png",
@@ -156,6 +191,20 @@
                 "key": "Money"
             },
             {
+                "url": [
+                    "assets/audio/sounds/deaths-fall-impact/object-box-cardboard-medium-fall-02.wav"
+                ],
+                "type": "audio",
+                "key": "object-box-cardboard-medium-fall-02"
+            },
+            {
+                "url": [
+                    "assets/audio/sounds/pickup/object-herb-pickup-02.wav"
+                ],
+                "type": "audio",
+                "key": "object-herb-pickup-02"
+            },
+            {
                 "url": "assets/packs/industrial/anims/Platform.png",
                 "frameConfig": {
                     "frameWidth": 32,
@@ -203,6 +252,13 @@
                 },
                 "type": "spritesheet",
                 "key": "ProtHands"
+            },
+            {
+                "url": [
+                    "assets/audio/sounds/guns/sci-fi-space-laser-gun-short-silencer-03.wav"
+                ],
+                "type": "audio",
+                "key": "sci-fi-space-laser-gun-short-silencer-03"
             },
             {
                 "url": "assets/packs/industrial/anims/Screen1.png",
@@ -311,6 +367,27 @@
                 "url": "assets/enemies/TurretTrajectory.png",
                 "type": "image",
                 "key": "TurretTrajectory"
+            },
+            {
+                "url": [
+                    "assets/audio/music/tutorial-music.wav"
+                ],
+                "type": "audio",
+                "key": "tutorial-music"
+            },
+            {
+                "url": [
+                    "assets/audio/sounds/deflect-impact/weapons-bullet-large-impact-metal-03.wav"
+                ],
+                "type": "audio",
+                "key": "weapons-bullet-large-impact-metal-03"
+            },
+            {
+                "url": [
+                    "assets/audio/sounds/hammer/weapons-war-hammer-put-down-hard-02.wav"
+                ],
+                "type": "audio",
+                "key": "weapons-war-hammer-put-down-hard-02"
             }
         ]
     },

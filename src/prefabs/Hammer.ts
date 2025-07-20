@@ -1,6 +1,7 @@
 
 // You can write more code here
 
+import { SoundManager } from "../SoundManager";
 import Character from "./Character";
 
 /* START OF COMPILED CODE */
@@ -82,7 +83,7 @@ export default class Hammer extends Phaser.GameObjects.Container {
 				this.scene.physics.add.collider(characterPlayer, this.blockingVolume2);
 
 				this.scene.physics.add.overlap(characterPlayer, this.killingVolume, () => {
-					characterPlayer.dieFromEnvironment();
+					characterPlayer.dieFromEnvironment("hammer");
 				});
 			} else {
 				console.warn("Character prefab not found in the scene. Retrying...");
@@ -95,7 +96,15 @@ export default class Hammer extends Phaser.GameObjects.Container {
 		this.hammerSprite.on(
 			Phaser.Animations.Events.ANIMATION_UPDATE,
 			(_anim: Phaser.Animations.Animation, frame: Phaser.Animations.AnimationFrame) => {
-				const coord = coordMap[frame.index.toString()];
+				const frameName = frame.index.toString();
+				const coord = coordMap[frameName];
+
+				switch (frameName) {
+					case "3":
+						this.soundManager.playSoundSpatial("weapons-war-hammer-put-down-hard-02", this.x, this.y, { refDistance: 10, maxDistance: 300 });
+						break;
+				}
+
 				if (coord) {
 					this.blockingVolume1.setSize(10, coord.scaleY);
 					this.blockingVolume2.setSize(10, coord.scaleY);
@@ -139,6 +148,7 @@ export default class Hammer extends Phaser.GameObjects.Container {
 	public repeatDelay: number = 500;
 
 	/* START-USER-CODE */
+	private soundManager: SoundManager = SoundManager.getInstance();
 
 	// Write your code here.
 

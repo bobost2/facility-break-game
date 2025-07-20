@@ -1,6 +1,7 @@
 
 // You can write more code here
 
+import { SoundManager } from "../SoundManager";
 import Character from "./Character";
 
 /* START OF COMPILED CODE */
@@ -33,9 +34,11 @@ export default class Door extends Phaser.GameObjects.Sprite {
 	}
 
 	/* START-USER-CODE */
+	private soundManager = SoundManager.getInstance();
 
 	// Write your code here.
 	public openDoor() {
+		this.soundManager.playSoundSpatial("door-open", this.x, this.y, { refDistance: 10, maxDistance: 300 });
 		this.play({ key: "door-open", frameRate: 12, repeat: 0 });
 		this.once(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
 			const body = this.body as Phaser.Physics.Arcade.Body;
@@ -44,6 +47,7 @@ export default class Door extends Phaser.GameObjects.Sprite {
 	}
 
 	public closeDoor() {
+		this.soundManager.playSoundSpatial("door-close", this.x, this.y, { refDistance: 10, maxDistance: 300 });
 		this.play({ key: "door-close", frameRate: 12, repeat: 0 });
 		this.once(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
 			const body = this.body as Phaser.Physics.Arcade.Body;

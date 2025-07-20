@@ -10,6 +10,7 @@ import ConsumablePickup from "../../prefabs/ConsumablePickup";
 import Character from "../../prefabs/Character";
 import Hammer from "../../prefabs/Hammer";
 import PlayerHUD from "../../prefabs/ui/PlayerHUD";
+import { SoundManager } from "../../SoundManager";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -374,7 +375,7 @@ export default class IntroLevel extends Phaser.Scene {
 			this.collision_layer,
 			(player, tile) => {
 				if (tile && tile instanceof Phaser.Tilemaps.Tile && tile.index === deathTileID) {
-					(player as Character).dieFromEnvironment();
+					(player as Character).dieFromEnvironment("fall");
 				}
 			},
 			// Only trigger overlap if the tile is a Tile and its index is 129
@@ -387,6 +388,12 @@ export default class IntroLevel extends Phaser.Scene {
 		if (debugLayer) {
 			this.collision_layer.setVisible(true);
 			this.collision_layer.setAlpha(0.25);
+		}
+
+		const soundManager = SoundManager.getInstance();
+		if (!soundManager.isInitialized()) {
+			soundManager.initialize(this);
+			soundManager.playBackgroundMusic('tutorial-music');
 		}
 	}
 

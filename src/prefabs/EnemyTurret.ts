@@ -1,6 +1,7 @@
 
 // You can write more code here
 
+import { SoundManager } from "../SoundManager";
 import Character from "./Character";
 
 /* START OF COMPILED CODE */
@@ -72,6 +73,7 @@ export default class EnemyTurret extends Phaser.GameObjects.Container {
 	private isActive: boolean = false;
 	private firingState: 'aiming' | 'freezing' | 'firing' | 'cooling' = 'aiming';
 	private stateTimer: number = 0;
+	private soundManager = SoundManager.getInstance();
 
 	// Write your code here.
 	public activate() {
@@ -89,6 +91,8 @@ export default class EnemyTurret extends Phaser.GameObjects.Container {
 		bullet.setOrigin(0.5, 0.5);
 		bullet.rotation = this.turretGun.rotation;
 
+		bullet.setDepth(this.depth - 1);
+
 		this.scene.physics.add.existing(bullet);
 		const bulletBody = bullet.body as Phaser.Physics.Arcade.Body;
 
@@ -101,7 +105,7 @@ export default class EnemyTurret extends Phaser.GameObjects.Container {
 
 		bulletBody.setVelocity(velocityX, velocityY);
 
-		this.scene.physics.add.overlap(bullet, this.characterPlayer, (bullet, player) => {
+		this.scene.physics.add.overlap(bullet, this.characterPlayer, (bullet, _player) => {
 			bullet.destroy();
 			this.characterPlayer.takeDamage(this.bulletDamage);
 		});
@@ -119,7 +123,16 @@ export default class EnemyTurret extends Phaser.GameObjects.Container {
 		});
 
 		bulletBody.setCollideWorldBounds(false);
-		bullet.setDepth(1);
+	}
+
+	private aimAtPlayer() {
+		const angle = Phaser.Math.Angle.Between(this.x, this.y, this.characterPlayer.x, this.characterPlayer.y);
+		const adjustedAngle = angle - Math.PI / 2.3; // epic magic number
+		this.turretGun.rotation = adjustedAngle;
+		this.turretTrajectory.rotation = adjustedAngle;
+		
+		const aimingProgress = Math.min(this.stateTimer / this.aimingDuration, 1);
+		this.turretTrajectory.alpha = aimingProgress * 1;
 	}
 
 	update() {
@@ -130,13 +143,7 @@ export default class EnemyTurret extends Phaser.GameObjects.Container {
 
 		switch (this.firingState) {
 			case 'aiming':
-				const angle = Phaser.Math.Angle.Between(this.x, this.y, this.characterPlayer.x, this.characterPlayer.y);
-				const adjustedAngle = angle - Math.PI / 2.3; // epic magic number
-				this.turretGun.rotation = adjustedAngle;
-				this.turretTrajectory.rotation = adjustedAngle;
-
-				const aimingProgress = Math.min(this.stateTimer / this.aimingDuration, 1);
-				this.turretTrajectory.alpha = aimingProgress * 1;
+				this.aimAtPlayer();
 
 				if (this.stateTimer >= this.aimingDuration) {
 					this.firingState = 'freezing';
@@ -155,12 +162,14 @@ export default class EnemyTurret extends Phaser.GameObjects.Container {
 
 			case 'firing':
 				this.fireProjectile();
+				this.soundManager.playSoundSpatial("sci-fi-space-laser-gun-short-silencer-03", this.x, this.y, { refDistance: 10, maxDistance: 300 });
 				this.firingState = 'cooling';
 				this.stateTimer = 0;
 				this.turretTrajectory.alpha = 0;
 				break;
 
 			case 'cooling':
+				this.aimAtPlayer();
 				if (this.stateTimer >= this.cooldownDuration) {
 					this.firingState = 'aiming';
 					this.stateTimer = 0;

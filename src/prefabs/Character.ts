@@ -1,6 +1,7 @@
 
 // You can write more code here
 
+import { SoundManager } from "../SoundManager";
 import PlayerHUD from "./ui/PlayerHUD";
 
 /* START OF COMPILED CODE */
@@ -202,6 +203,8 @@ export default class Character extends Phaser.GameObjects.Container {
 	private lastValidRotation: number = 0; 
 	private sideMultiplier: number = 1;
 
+	private soundManager: SoundManager = SoundManager.getInstance();
+
 	preUpdate(_time: number, _delta: number) {		
 		if (!this.active) return;
 		if (this.hasCharacterDied) return;
@@ -256,6 +259,8 @@ export default class Character extends Phaser.GameObjects.Container {
 	update(_time: number, delta: number) {
 		if (!this.active) return;
 		if (this.hasCharacterDied) return;
+
+		//this.scene.sound.setListenerPosition(this.x, this.y);
 
 		const body = this.body as Phaser.Physics.Arcade.Body;
 		const now = this.scene.time.now;
@@ -318,6 +323,7 @@ export default class Character extends Phaser.GameObjects.Container {
 			this.dashTimer = this.dashDuration;
 			this.currentStamina -= this.dashStaminaLoss;
 			this.lastStaminaUsed = now;
+			this.soundManager.playSound2D("foley-jump-comic-swoosh-fast-02");
 		}
 
 		// Double-tap A for dash left
@@ -328,6 +334,7 @@ export default class Character extends Phaser.GameObjects.Container {
 				this.dashTimer = this.dashDuration;
 				this.currentStamina -= this.dashStaminaLoss;
 				this.lastStaminaUsed = now;
+				this.soundManager.playSound2D("foley-jump-comic-swoosh-fast-02");
 			}
 			this.lastLeftTap = now;
 			this.rightSide = false;
@@ -341,6 +348,7 @@ export default class Character extends Phaser.GameObjects.Container {
 				this.dashTimer = this.dashDuration;
 				this.currentStamina -= this.dashStaminaLoss;
 				this.lastStaminaUsed = now;
+				this.soundManager.playSound2D("foley-jump-comic-swoosh-fast-02");
 			}
 			this.lastRightTap = now;
 			this.rightSide = true;
@@ -407,16 +415,30 @@ export default class Character extends Phaser.GameObjects.Container {
 			this.scene.cameras.main.stopFollow();
 			this.scene.cameras.main.fadeOut(1000, 0, 0, 0).once('camerafadeoutcomplete', () => {
 				this.scene.scene.restart();
+				setTimeout(() => {
+					this.soundManager.getCharacterPlayer();
+				}, 100);
 			});
 		}
 	}
 
-	public dieFromEnvironment() {
+	public dieFromEnvironment(deathCause: "hammer" | "fall") {
 		if (this.hasCharacterDied) return; // Prevent multiple calls
+
+		switch (deathCause) {
+			case "hammer":
+				this.soundManager.playSound2D("gore-guts-bloody-guts-drop-down-single-impact-wet-03");
+				break;
+			case "fall":
+				this.soundManager.playSound2D("object-box-cardboard-medium-fall-02");
+				break;
+		}
+
 		this.die(false);
 	}
 
 	public pickUpHealthPack() {
+		this.soundManager.playSound2D("object-herb-pickup-02");
 		this.healthPackAmount++;
 		this._HUD.updateHealthPackAmount(this.healthPackAmount);
 	}
@@ -431,6 +453,7 @@ export default class Character extends Phaser.GameObjects.Container {
 	}
 
 	public pickUpEnergyDrink() {
+		this.soundManager.playSound2D("object-herb-pickup-02");
 		this.energyDrinkAmount++;
 		this._HUD.updateEnergyDrinkAmount(this.energyDrinkAmount);
 	}
@@ -448,6 +471,9 @@ export default class Character extends Phaser.GameObjects.Container {
 		if (this.hasCharacterDied) return; // Prevent damage after death
 		this.currentHealth -= amount;
 
+		// Currently only bullets can damage the player
+		this.soundManager.playSound2D("gore-impact-guts-wet-02");
+
 		if (this.currentHealth <= 0) {
 			this.die();
 		} else {
@@ -459,8 +485,9 @@ export default class Character extends Phaser.GameObjects.Container {
 		if (this.currentStamina - this.blockStaminaPenalty > 0 && this.currentlyBlocking) {
 			this.currentStamina -= this.blockStaminaPenalty;
 			this._HUD.updateStamina(this.currentStamina / this.maxStamina);
+			this.soundManager.playSound2D("weapons-bullet-large-impact-metal-03");
 			return true;
-		} 
+		}
 
 		return false;
 	}
